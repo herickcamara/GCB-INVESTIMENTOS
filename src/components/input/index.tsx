@@ -5,8 +5,9 @@ type Prop = {
   placeHolder?: string;
   type?: string;
   autoFocus?: boolean;
-  value?: string;
+  value?: string | number;
   handleOnChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  disabled?: boolean;
 };
 export const Input = ({
   placeHolder,
@@ -14,6 +15,7 @@ export const Input = ({
   type,
   value,
   handleOnChange,
+  disabled,
 }: Prop) => {
   return (
     <C.Input
@@ -21,6 +23,7 @@ export const Input = ({
       type={type}
       autoFocus={autoFocus}
       value={value}
+      disabled={disabled}
       onChange={handleOnChange}
     />
   );

@@ -9,7 +9,7 @@ export const initialState: State = {
   setCurrentStep: 0,
   setName: "",
   setLastName: "",
-  date: "",
+  dateNacimento: "",
   city: "",
   cpf: "",
   district: "",
@@ -24,7 +24,7 @@ export enum FormAction {
   setCurrentStep,
   setName,
   setLastName,
-  date,
+  dateNacimento,
   city,
   cpf,
   district,
@@ -42,9 +42,9 @@ export const formReduce = (state: State, action: Action) => {
     case FormAction.setName:
       return { ...state, setName: action.payload };
     case FormAction.setLastName:
-      return { ...state, lastName: action.payload };
-    case FormAction.date:
-      return { ...state, date: action.payload };
+      return { ...state, setLastName: action.payload };
+    case FormAction.dateNacimento:
+      return { ...state, dateNacimento: action.payload };
     case FormAction.city:
       return { ...state, city: action.payload };
     case FormAction.cpf:

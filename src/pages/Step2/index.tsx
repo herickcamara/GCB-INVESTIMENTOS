@@ -1,0 +1,54 @@
+import * as C from "./styled";
+import React, { ChangeEvent } from "react";
+
+import { Input } from "../../components/input";
+import { ThemeForm } from "../../themes/themeForm";
+import { Button } from "../../components/Button";
+import { useNavigate } from "react-router-dom";
+import { useForm } from "../../hooks/ContextHook";
+import { FormAction } from "../../Reducer/useReduce";
+
+export const Step2 = () => {
+  const navigate = useNavigate();
+  const { state, dispatch } = useForm();
+  const { zipCode, setName } = state;
+
+  const handleNextStep = async () => {
+    navigate("/step3");
+  };
+  const handleBackStep = () => navigate(-1);
+
+  const handleCEPChange = (e: ChangeEvent<HTMLInputElement>) => {
+    dispatch({
+      type: FormAction.zipCode,
+      payload: e.target.value,
+    });
+  };
+
+  return (
+    <ThemeForm title="Register" desc="Sign up to enter and start your diet">
+      <C.Container>
+        <p>Passo 2/4</p>
+        <h2>Olá {setName}, insira o CEP</h2>
+        <p>Preencha o campo abaixo!</p>
+
+        <hr />
+
+        <label>
+          CEP: <br />
+          <Input
+            autoFocus={true}
+            type="text"
+            value={zipCode}
+            handleOnChange={handleCEPChange}
+            placeHolder="CEP"
+          />
+        </label>
+        <div className="btnArea">
+          <Button onClick={handleBackStep} bg="--color-h2" label="←Voltar" />
+          <Button onClick={handleNextStep} bg="--color-h2" label="Próximo" />
+        </div>
+      </C.Container>
+    </ThemeForm>
+  );
+};

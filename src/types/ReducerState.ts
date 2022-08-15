@@ -2,7 +2,7 @@ export type State = {
   setCurrentStep: number;
   setName: string;
   setLastName: string;
-  date: string;
+  dateNacimento: string;
   city: string;
   cpf: string;
   district: string;

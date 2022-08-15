@@ -1,16 +1,20 @@
 import { ReactNode } from "react";
 import * as C from "./styled";
-
+import bgImg from "../../assets/newservices.svg";
+import { useNavigate } from "react-router-dom";
 type Props = {
   children: ReactNode;
   title: string;
-  desc: string;
-  handleClick: () => void;
+  desc?: string;
 };
-export const ThemeForm = ({ title, desc, children, handleClick }: Props) => {
+export const ThemeForm = ({ title, desc, children }: Props) => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate("/");
+  };
   return (
-    <C.Containe>
-      <h1 onClick={handleClick}>← Voltar</h1>
+    <C.Containe img={bgImg}>
+      <h1 onClick={handleClick}>Healthy Food </h1>
       <C.Area>
         <div className="container">
           <h2>{title}</h2>

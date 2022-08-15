@@ -14,7 +14,7 @@ export const Menu = () => {
         <Link to="/Signin">JOIN</Link>
       </li>
       <li className="register">
-        <Link to="/Signup">REGISTER</Link>
+        <Link to="/step1">REGISTER</Link>
       </li>
     </C.Container>
   );
