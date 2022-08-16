@@ -1,5 +1,5 @@
 import * as C from "./styled";
-import { ChangeEvent } from "react";
+import { ChangeEvent, useEffect } from "react";
 
 import { Input } from "../../components/input";
 import { ThemeForm } from "../../themes/themeForm";
@@ -14,6 +14,16 @@ export const Step1 = () => {
   const { state, dispatch } = useForm();
   const { setName, dateNacimento, setLastName } = state;
 
+  useEffect(() => {
+    setcurrent();
+  }, []);
+
+  const setcurrent = () => {
+    dispatch({
+      type: FormAction.setCurrentStep,
+      payload: 1,
+    });
+  };
   const handleNextStep = () => {
     const next = !setName || !setLastName || !dateNacimento ? true : false;
     if (next) {
@@ -83,7 +93,7 @@ export const Step1 = () => {
           />
         </label>
 
-        <Button onClick={handleNextStep} bg="--color-h2" label="Proximo" />
+        <Button onClick={handleNextStep} bg="--bg-color" label="Proximo →" />
       </C.Container>
     </ThemeForm>
   );

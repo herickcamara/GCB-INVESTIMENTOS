@@ -38,7 +38,7 @@ export enum FormAction {
 export const formReduce = (state: State, action: Action) => {
   switch (action.type) {
     case FormAction.setCurrentStep:
-      return { ...state, currentStep: action.payload };
+      return { ...state, setCurrentStep: action.payload };
     case FormAction.setName:
       return { ...state, setName: action.payload };
     case FormAction.setLastName:

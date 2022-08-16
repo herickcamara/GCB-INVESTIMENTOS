@@ -16,10 +16,22 @@ export const Step3 = () => {
   useEffect(() => {
     useSetData();
   }, []);
-
+  useEffect(() => {
+    if (state.zipCode === "") {
+      navigate("/step2");
+    }
+    setcurrent();
+  }, []);
+  const setcurrent = () => {
+    dispatch({
+      type: FormAction.setCurrentStep,
+      payload: 3,
+    });
+  };
   const useSetData = async () => {
     if (state.zipCode) {
       const json = await API.getCep(state.zipCode);
+      console.log(json);
       const { bairro, localidade, logradouro, uf } = json;
       dispatch({
         type: FormAction.city,

@@ -1,5 +1,5 @@
 import * as C from "./styled";
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, useEffect } from "react";
 
 import { Input } from "../../components/input";
 import { ThemeForm } from "../../themes/themeForm";
@@ -12,9 +12,29 @@ export const Step4 = () => {
   const navigate = useNavigate();
   const { state, dispatch } = useForm();
   const { email, setName, password } = state;
+  useEffect(() => {
+    if (state.zipCode === "") {
+      navigate("/step2");
+    }
+    setcurrent();
+  }, []);
 
+  const setcurrent = () => {
+    dispatch({
+      type: FormAction.setCurrentStep,
+      payload: 4,
+    });
+  };
   const handleNextStep = async () => {
-    navigate("/");
+    const next = email && password;
+    if (next) {
+      if (email.includes("@")) {
+        return navigate("/signin");
+      }
+
+      return alert("email invalido");
+    }
+    return "Preencha todos os campos";
   };
   const handleBackStep = () => navigate(-1);
 
@@ -43,7 +63,7 @@ export const Step4 = () => {
           Email: <br />
           <Input
             autoFocus={true}
-            type="text"
+            type="email"
             value={email}
             handleOnChange={handleEmailChange}
             placeHolder="Email"

@@ -7,7 +7,7 @@ export const Containe = styled.div<{ img?: string }>`
   background: ${(props) => `url(${props.img})` ?? ""} no-repeat;
   background-size: 25%;
   background-position: left bottom;
-  background-color: var(--bg-color);
+  background-color: var(--color-h2);
   h1 {
     display: inline-block;
     padding: 10px 0px;
@@ -19,11 +19,11 @@ export const Containe = styled.div<{ img?: string }>`
 
   .container {
     padding: 26px 0;
-    border-bottom: 1px solid #16195c;
+    border-bottom: 1px solid var(--color-p);
 
     h2 {
       font-size: 28px;
-      color: var(--color-h2);
+      color: #f5f5f5;
     }
 
     p {
@@ -48,7 +48,7 @@ export const Steps = styled.div`
 
 export const Sidebar = styled.div`
   width: 250px;
-  border-right: 1px solid #16195c;
+  border-right: 1px solid var(--color-p);
 `;
 
 export const Page = styled.div`

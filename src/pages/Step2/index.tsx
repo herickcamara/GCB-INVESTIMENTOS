@@ -1,5 +1,5 @@
 import * as C from "./styled";
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, useEffect } from "react";
 
 import { Input } from "../../components/input";
 import { ThemeForm } from "../../themes/themeForm";
@@ -13,7 +13,26 @@ export const Step2 = () => {
   const { state, dispatch } = useForm();
   const { zipCode, setName } = state;
 
+  useEffect(() => {
+    if (setName === "") {
+      navigate("/step1");
+    }
+    setcurrent();
+  }, []);
+
+  const setcurrent = () => {
+    dispatch({
+      type: FormAction.setCurrentStep,
+      payload: 2,
+    });
+  };
   const handleNextStep = async () => {
+    if (zipCode === "") {
+      return alert("Preencha todos os compos");
+    }
+    if (zipCode.length > 8 || zipCode.length < 8) {
+      return alert("CEP Nao encontrado verifique seu CEP");
+    }
     navigate("/step3");
   };
   const handleBackStep = () => navigate(-1);
