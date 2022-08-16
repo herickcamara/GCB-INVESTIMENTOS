@@ -91,6 +91,7 @@ export const ContainerScroll = styled.section`
       width: 100%;
       height: 100%;
       display: flex;
+      align-items: center;
       padding: 0px 40px;
       overflow-x: scroll;
       scroll-behavior: smooth;

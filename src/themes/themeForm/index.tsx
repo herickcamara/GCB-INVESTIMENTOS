@@ -1,23 +1,23 @@
 import { ReactNode } from "react";
 import * as C from "./styled";
 import bgImg from "../../assets/newservices.svg";
-import { useNavigate } from "react-router-dom";
 import { SiderbarItem } from "../../components/SidebarItem";
 import { useForm } from "../../hooks/ContextHook";
+import { Header } from "../../components/Header";
+import { Button } from "../../components/Button";
 type Props = {
   children: ReactNode;
   title: string;
   desc?: string;
 };
 export const ThemeForm = ({ title, desc, children }: Props) => {
-  const navigate = useNavigate();
   const { state } = useForm();
-  const handleClick = () => {
-    navigate("/");
-  };
+
   return (
     <C.Containe img={bgImg}>
-      <h1 onClick={handleClick}>Healthy Food </h1>
+      <Header title=" Healthy Food">
+        <Button label="Login" />
+      </Header>
       <C.Area>
         <div className="container">
           <h2>{title}</h2>

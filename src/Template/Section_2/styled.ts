@@ -27,4 +27,13 @@ export const Grid = styled.section`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    justify-content: center;
+    width: 100%;
+    margin: auto;
+    gap: 40px;
+    padding: 20px;
+  }
 `;

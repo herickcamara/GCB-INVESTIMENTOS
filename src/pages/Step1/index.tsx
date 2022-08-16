@@ -4,7 +4,7 @@ import { ChangeEvent, useEffect } from "react";
 import { Input } from "../../components/input";
 import { ThemeForm } from "../../themes/themeForm";
 import { Button } from "../../components/Button";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "../../hooks/ContextHook";
 import { FormAction } from "../../Reducer/useReduce";
 import { filterData } from "../../helpers/filterDate";
@@ -12,7 +12,7 @@ import { filterData } from "../../helpers/filterDate";
 export const Step1 = () => {
   const navigate = useNavigate();
   const { state, dispatch } = useForm();
-  const { setName, dateNacimento, setLastName } = state;
+  const { setName, dateNacimento, cpf, setLastName } = state;
 
   useEffect(() => {
     setcurrent();
@@ -25,7 +25,9 @@ export const Step1 = () => {
     });
   };
   const handleNextStep = () => {
-    const next = !setName || !setLastName || !dateNacimento ? true : false;
+    const next =
+      !cpf || !setName || !setLastName || !dateNacimento ? true : false;
+
     if (next) {
       return alert("Preencha todos os compos");
     }
@@ -34,7 +36,12 @@ export const Step1 = () => {
     }
     navigate("/step2");
   };
-
+  const handleCPFChange = (e: ChangeEvent<HTMLInputElement>) => {
+    dispatch({
+      type: FormAction.cpf,
+      payload: e.target.value,
+    });
+  };
   const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch({
       type: FormAction.setName,
@@ -63,11 +70,19 @@ export const Step1 = () => {
         <p>Preencha os campos abaixo! </p>
 
         <hr />
-
+        <label>
+          CPF: <br />
+          <Input
+            autoFocus={true}
+            type="text"
+            value={cpf}
+            handleOnChange={handleCPFChange}
+            placeHolder="CPF"
+          />
+        </label>
         <label>
           Seu nome: <br />
           <Input
-            autoFocus={true}
             type="text"
             value={setName}
             handleOnChange={handleNameChange}
@@ -93,7 +108,7 @@ export const Step1 = () => {
           />
         </label>
 
-        <Button onClick={handleNextStep} bg="--bg-color" label="Proximo →" />
+        <Button onClick={handleNextStep} label="Proximo →" />
       </C.Container>
     </ThemeForm>
   );
