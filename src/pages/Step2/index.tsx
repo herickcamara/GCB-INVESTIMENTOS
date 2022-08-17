@@ -52,21 +52,22 @@ export const Step2 = () => {
         <p>Preencha o campo abaixo!</p>
 
         <hr />
-
-        <label>
-          CEP: <br />
-          <Input
-            autoFocus={true}
-            type="text"
-            value={zipCode}
-            handleOnChange={handleCEPChange}
-            placeHolder="CEP"
-          />
-        </label>
-        <div className="btnArea">
-          <Button onClick={handleBackStep} bg="--color-h2" label="←Voltar" />
-          <Button onClick={handleNextStep} bg="--color-h2" label="Próximo" />
+        <div className="gridArea">
+          <label>
+            CEP: <br />
+            <Input
+              autoFocus={true}
+              type="text"
+              value={zipCode}
+              handleOnChange={handleCEPChange}
+              placeHolder="CEP"
+            />
+          </label>
         </div>
+        <C.BtmArea>
+          <Button onClick={handleBackStep} bg="--color-h2" label="←Voltar" />
+          <Button onClick={handleNextStep} bg="--color-h2" label="Proximo→" />
+        </C.BtmArea>
       </C.Container>
     </ThemeForm>
   );

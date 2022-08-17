@@ -6,34 +6,44 @@ import * as C from "./styled";
 
 export const Section_4 = () => {
   const [displayLeft, setDisplayLeft] = useState(false);
-  const [displayRight, setdisplayRight] = useState(true);
+  const [displayRight, setDisplayRight] = useState(true);
   const corsel: any = useRef(null);
-  const [te, setTe] = useState(0);
-  useEffect(() => {
-    handleDisplay();
-  }, [te]);
+  const paddingMargin = 479;
+  const widthItem = 243;
 
   const handleLeftClick = () => {
-    const paddingMargin = 260;
-    setTe((corsel.current.scrollLeft -= 259 + paddingMargin));
+    corsel.current.scrollLeft -= widthItem + paddingMargin;
+    handleDisplay();
   };
 
   const handleRighttClick = () => {
-    const paddingMargin = 260;
-    console.log(corsel.current.scrollLeft);
-    setTe((corsel.current.scrollLeft += 259));
+    corsel.current.scrollLeft += widthItem + paddingMargin;
+    handleDisplay();
   };
 
   const handleDisplay = () => {
-    const paddingMargin = 260;
+    const scroll = corsel.current.scrollLeft;
+    const widthScroll = Data.users.length * widthItem - paddingMargin;
 
-    if (te >= corsel.current.offsetWidth + paddingMargin) {
-      setdisplayRight(false);
+    if (scroll > 0 && scroll < widthScroll) {
       setDisplayLeft(true);
-    } else {
-      setdisplayRight(false);
+      setDisplayRight(true);
+    }
+    if (Math.ceil(scroll) >= widthScroll) {
+      setDisplayRight(false);
+      setDisplayLeft(true);
+    }
+    if (scroll <= 0) {
+      setDisplayLeft(false);
+      setDisplayRight(true);
     }
   };
+
+  useEffect(() => {
+    const div = corsel.current;
+    div.addEventListener("scroll", handleDisplay);
+  }, []);
+
   return (
     <MainTheme>
       <C.Container>

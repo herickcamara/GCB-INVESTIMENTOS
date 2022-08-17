@@ -8,14 +8,6 @@ export const Containe = styled.div<{ img?: string }>`
   background-size: 25%;
   background-position: left bottom;
   background-color: var(--color-h2);
-  h1 {
-    display: inline-block;
-    padding: 10px 0px;
-    display: flex;
-    align-items: center;
-    color: var(--color-h1);
-    cursor: pointer;
-  }
 
   .container {
     padding: 26px 0;
@@ -29,6 +21,27 @@ export const Containe = styled.div<{ img?: string }>`
     p {
       font-size: 18px;
       color: var(--color-p);
+    }
+    @media (max-width: 480px) {
+      h2 {
+        font-size: 20px;
+      }
+
+      p {
+        font-size: 15px;
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    h1 {
+      width: inherit;
+      font-size: 25px;
+    }
+  }
+  @media (max-width: 270px) {
+    h1 {
+      font-size: 20px;
     }
   }
 `;
@@ -44,11 +57,26 @@ export const Area = styled.div`
 export const Steps = styled.div`
   flex: 1;
   display: flex;
+  @media (max-width: 721px) {
+    flex-direction: column;
+  }
 `;
 
 export const Sidebar = styled.div`
   width: 250px;
   border-right: 1px solid var(--color-p);
+  @media (max-width: 721px) {
+    max-height: 96px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    width: 100%;
+    padding: 0 10px;
+    border: none;
+    border-bottom: 1px solid var(--color-p);
+  }
+  @media (max-width: 321px) {
+    border: none;
+  }
 `;
 
 export const Page = styled.div`
@@ -57,4 +85,14 @@ export const Page = styled.div`
   padding-top: 40px;
   display: flex;
   flex-direction: column;
+  @media (max-width: 721px) {
+    padding: 0px;
+
+    margin-top: 10px;
+  }
+  @media (max-width: 480px) {
+    margin: 0px;
+    margin-top: 10px;
+    grid-template-columns: 1fr;
+  }
 `;

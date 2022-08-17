@@ -34,9 +34,13 @@ export const Container = styled.div`
       }
     }
   }
-  a {
-    color: var(--color-h2);
+  p {
+    font-size: 18px;
     font-weight: bold;
+    color: var(--color-h2);
+  }
+  a {
+    color: var(--bg-button);
     &:hover {
       color: #222;
     }

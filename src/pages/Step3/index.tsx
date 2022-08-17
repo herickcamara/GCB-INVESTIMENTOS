@@ -77,7 +77,7 @@ export const Step3 = () => {
           {state.zipCode}
         </p>
         <hr />
-        <div>
+        <div className="gridArea">
           <label>
             bairro: <br />
             <Input disabled value={district} />
@@ -105,10 +105,10 @@ export const Step3 = () => {
             />
           </label>
         </div>
-        <div className="btnArea">
+        <C.BtmArea>
           <Button onClick={handleBackStep} bg="--color-h2" label="←Voltar" />
-          <Button onClick={handleNextStep} bg="--color-h2" label="Proximo" />
-        </div>
+          <Button onClick={handleNextStep} bg="--color-h2" label="Proximo→" />
+        </C.BtmArea>
       </C.Container>
     </ThemeForm>
   );

@@ -4,7 +4,7 @@ import { ChangeEvent, useEffect } from "react";
 import { Input } from "../../components/input";
 import { ThemeForm } from "../../themes/themeForm";
 import { Button } from "../../components/Button";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "../../hooks/ContextHook";
 import { FormAction } from "../../Reducer/useReduce";
 import { filterData } from "../../helpers/filterDate";
@@ -70,43 +70,45 @@ export const Step1 = () => {
         <p>Preencha os campos abaixo! </p>
 
         <hr />
-        <label>
-          CPF: <br />
-          <Input
-            autoFocus={true}
-            type="text"
-            value={cpf}
-            handleOnChange={handleCPFChange}
-            placeHolder="CPF"
-          />
-        </label>
-        <label>
-          Seu nome: <br />
-          <Input
-            type="text"
-            value={setName}
-            handleOnChange={handleNameChange}
-            placeHolder="Nome"
-          />
-        </label>
-        <label>
-          sobrenome: <br />
-          <Input
-            type="text"
-            value={setLastName}
-            handleOnChange={handleLastNameChange}
-            placeHolder="Sobrenome"
-          />
-        </label>
-        <label>
-          Date de nacimento: <br />
-          <Input
-            type="date"
-            value={dateNacimento}
-            handleOnChange={handleDataNacimento}
-            placeHolder="Data de nacimentor"
-          />
-        </label>
+        <div className="gridArea">
+          <label>
+            CPF: <br />
+            <Input
+              autoFocus={true}
+              type="text"
+              value={cpf}
+              handleOnChange={handleCPFChange}
+              placeHolder="CPF"
+            />
+          </label>
+          <label>
+            Seu nome: <br />
+            <Input
+              type="text"
+              value={setName}
+              handleOnChange={handleNameChange}
+              placeHolder="Nome"
+            />
+          </label>
+          <label>
+            sobrenome: <br />
+            <Input
+              type="text"
+              value={setLastName}
+              handleOnChange={handleLastNameChange}
+              placeHolder="Sobrenome"
+            />
+          </label>
+          <label>
+            Date de nacimento: <br />
+            <Input
+              type="date"
+              value={dateNacimento}
+              handleOnChange={handleDataNacimento}
+              placeHolder="Data de nacimentor"
+            />
+          </label>
+        </div>
 
         <Button onClick={handleNextStep} label="Proximo →" />
       </C.Container>

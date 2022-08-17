@@ -4,7 +4,7 @@ import * as C from "./styled";
 import close from "../../assets/close-small-svgrepo-com.svg";
 import menu from "../../assets/menu-svgrepo-com.svg";
 export const Menu = () => {
-  const [drop, setDrop] = useState(true);
+  const [drop, setDrop] = useState<boolean>(false);
   const handleMenuDrop = () => {
     if (drop) {
       setDrop(false);
@@ -14,15 +14,15 @@ export const Menu = () => {
   };
   return (
     <C.Container>
-      <C.Drop onClick={handleMenuDrop}>
+      <C.DropsMenu onClick={handleMenuDrop}>
         <img src={drop ? close : menu} alt="" />
-      </C.Drop>
-      <C.Ul action={drop}>
+      </C.DropsMenu>
+      <C.Ul active={drop}>
         <li>
-          <Link to="#">HEALTHY RECIPES</Link>
+          <Link to="">HEALTHY RECIPES</Link>
         </li>
         <li>
-          <Link to="#">BLOG</Link>
+          <Link to="">BLOG</Link>
         </li>
         <li>
           <Link to="/Signin">JOIN</Link>

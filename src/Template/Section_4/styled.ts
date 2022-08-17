@@ -29,6 +29,7 @@ export const ContainerScroll = styled.section`
     display: flex;
     align-items: center;
     justify-content: center;
+
     .areaArrowLeft {
       width: 70px;
       height: 100%;
@@ -86,7 +87,12 @@ export const ContainerScroll = styled.section`
         border: none;
       }
     }
-
+    @media (max-width: 721px) {
+      .areaArrowRight,
+      .areaArrowLeft {
+        display: none !important;
+      }
+    }
     .scroll {
       width: 100%;
       height: 100%;

@@ -7,7 +7,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: end;
 `;
-export const Drop = styled.div`
+export const DropsMenu = styled.div`
   width: 30px;
   cursor: pointer;
   height: 30px;
@@ -22,7 +22,7 @@ export const Drop = styled.div`
     display: flex;
   }
 `;
-export const Ul = styled.ul<{ action?: boolean }>`
+export const Ul = styled.ul<{ active?: boolean }>`
   flex: 1;
   height: 40px;
   display: flex;
@@ -30,25 +30,29 @@ export const Ul = styled.ul<{ action?: boolean }>`
   align-items: center;
   justify-content: space-evenly;
   list-style-type: none;
+
   li {
+    padding: 20px;
     height: 100%;
     display: flex;
     align-items: center;
     border-radius: 3px;
   }
+
   a {
     font-weight: bold;
   }
+
   .register {
     background-color: #f5f5f5;
-    padding: 10px;
+    padding: 20px;
 
     a {
       color: var(--color-h1);
     }
   }
   @media (max-width: 768px) {
-    display: ${(props) => (props.action ? "block" : "none")};
+    display: ${(props) => (props.active ? "block" : "none")};
     position: absolute;
     width: 40%;
     top: 70px;

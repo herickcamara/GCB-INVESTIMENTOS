@@ -9,7 +9,7 @@ export const Section_5 = () => {
   return (
     <MainTheme img={imgEnd} pos="top right">
       <C.Container>
-        <aside style={{ margin: 0 }} className="aside">
+        <aside className="aside">
           <h2>
             Join our membership <br /> to get special offer
           </h2>
