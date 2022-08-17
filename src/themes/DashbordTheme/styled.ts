@@ -5,6 +5,9 @@ export const Container = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
+  header {
+    color: var(--color-h2);
+  }
 `;
 export const SubContainer = styled.div`
   flex: 1;

@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { Header } from "../../components/Header";
+import { Menu } from "../../components/Menu";
 import * as C from "./styled";
 
 type Props = {
@@ -9,7 +10,9 @@ type Props = {
 export const DashBord = ({ children }: Props) => {
   return (
     <C.Container>
-      <Header title="ola"></Header>
+      <Header bg="var(--color-h2)" title="ola">
+        <Menu />
+      </Header>
       <C.SubContainer>{children}</C.SubContainer>
     </C.Container>
   );

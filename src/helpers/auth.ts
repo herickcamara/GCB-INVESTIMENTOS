@@ -1,22 +1,17 @@
-import { useForm } from "../hooks/ContextHook";
+import { State } from "../types/ReducerState";
 
 export const Auth = () => {
-  const { state, dispatch } = useForm();
-
   const userToken = localStorage.getItem("@token");
   const userDb = localStorage.getItem("@user_db");
 
   if (userToken && userDb) {
-    const hasUser = JSON.parse(userDb)?.filter(
+    const hasUser: State[] = JSON.parse(userDb)?.filter(
       (user: any) => user.email === JSON.parse(userToken).email
     );
 
     if (hasUser) {
-      return true;
+      return { status: 200, hasUser };
     }
-
-    return false;
   }
-  return false;
+  return null;
 };
-const hasndleAuth = (db: string, token: string) => {};
