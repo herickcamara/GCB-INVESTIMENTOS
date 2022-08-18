@@ -6,6 +6,7 @@ export const Container = styled.div`
   gap: 15px;
   h2 {
     font-size: 28px;
+
     color: #f5f5f5;
   }
 

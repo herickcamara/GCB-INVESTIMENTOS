@@ -12,8 +12,7 @@ export const Container = styled.section`
     flex-direction: column;
     margin: auto;
     h2 {
-      font-size: 30px;
-      color: var(--color-h2);
+      font-size: 1.87rem;
     }
     div {
       max-width: 267px;
@@ -30,7 +29,7 @@ export const Container = styled.section`
       width: 90%;
 
       h2 {
-        font-size: 20px;
+        font-size: 1.25rem;
       }
       div {
         width: 100%;

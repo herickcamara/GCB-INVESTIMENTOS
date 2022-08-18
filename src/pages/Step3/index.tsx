@@ -2,12 +2,12 @@ import * as C from "./styled";
 import { ChangeEvent, useEffect } from "react";
 
 import { Input } from "../../components/input";
-import { ThemeForm } from "../../themes/themeForm";
+import { ThemeForm } from "../../styles/themes/themeForm";
 import { Button } from "../../components/Button";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "../../hooks/ContextHook";
 import { FormAction } from "../../Reducer/useReduce";
-import { API } from "../../Api/CepApi";
+import { API } from "../../services/api";
 
 export const Step3 = () => {
   const navigate = useNavigate();

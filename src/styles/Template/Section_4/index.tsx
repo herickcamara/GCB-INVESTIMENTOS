@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { Post } from "../../components/PostCard";
-import { Data } from "../../dataFake";
+import { Post } from "../../../components/PostCard";
+import { Data } from "../../../dataFake";
 import { MainTheme } from "../../themes/ThemeMain";
 import * as C from "./styled";
 
@@ -53,23 +53,17 @@ export const Section_4 = () => {
       </C.Container>
       <C.ContainerScroll>
         <div className="scrollBar">
-          <div
-            style={{ display: displayLeft ? "flex" : "none" }}
-            className="areaArrowLeft"
-          >
+          <C.AreaArrowLeft style={{ display: displayLeft ? "flex" : "none" }}>
             <button onClick={handleLeftClick}>←</button>
-          </div>
+          </C.AreaArrowLeft>
           <div ref={corsel} className="scroll">
             {Data.users.map((item, index) => (
               <Post key={index} item={item} />
             ))}
           </div>
-          <div
-            style={{ display: displayRight ? "flex" : "none" }}
-            className="areaArrowRight"
-          >
+          <C.AreaArrowRight style={{ display: displayRight ? "flex" : "none" }}>
             <button onClick={handleRighttClick}>→</button>
-          </div>
+          </C.AreaArrowRight>
         </div>
       </C.ContainerScroll>
     </MainTheme>

@@ -18,12 +18,11 @@ export const DropsMenu = styled.div`
     width: 100%;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 840px) {
     display: flex;
   }
 `;
 export const Ul = styled.ul<{ active?: boolean }>`
-  flex: 1;
   height: 40px;
   display: flex;
   padding: 10px;
@@ -51,7 +50,7 @@ export const Ul = styled.ul<{ active?: boolean }>`
       color: var(--color-h1);
     }
   }
-  @media (max-width: 768px) {
+  @media (max-width: 840px) {
     display: ${(props) => (props.active ? "block" : "none")};
     position: absolute;
     width: 40%;

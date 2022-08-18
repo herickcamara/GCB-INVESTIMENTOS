@@ -6,20 +6,19 @@ export const Container = styled.div<{
   img2?: string;
 }>`
   max-width: 1440px;
-  width: 100vw;
   min-height: 100vh;
   margin: auto;
   padding: 10px;
   padding-bottom: 20px;
   box-sizing: content-box;
-  background: ${(props) => (props.img ? `url(${props.img})` : "#f5f5f5")}
-    no-repeat;
-  background-size: 843px;
+  background: ${(props) => (props.img ? `url(${props.img})` : "#f5f5f5")} right
+    top / 872px no-repeat;
+  background-size: 752px;
   background-position: ${(props) => props.pos ?? "left top"};
 
   .subContainer {
-    max-width: 900px;
-    width: 90%;
+    max-width: 1190px;
+    width: 100%;
     height: inherit;
     margin: auto;
   }

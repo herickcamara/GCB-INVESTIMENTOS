@@ -1,6 +1,6 @@
 import * as C from "./styled";
-import { Button } from "../../components/Button";
-import { Input } from "../../components/input";
+import { Button } from "../../../components/Button";
+import { Input } from "../../../components/input";
 import { MainTheme } from "../../themes/ThemeMain";
 
 import imgEnd from "../../assets/bloco_final_image.svg";

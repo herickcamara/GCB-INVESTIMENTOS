@@ -1,7 +1,7 @@
 import * as C from "./styled";
 import { MainTheme } from "../../themes/ThemeMain";
-import { Data } from "../../dataFake";
-import { CardRecipe } from "../../components/CardRecipe";
+import { Data } from "../../../dataFake";
+import { CardRecipe } from "../../../components/CardRecipe";
 
 export const Section_2 = () => {
   return (

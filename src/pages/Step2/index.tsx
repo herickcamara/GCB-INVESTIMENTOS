@@ -2,7 +2,7 @@ import * as C from "./styled";
 import React, { ChangeEvent, useEffect } from "react";
 
 import { Input } from "../../components/input";
-import { ThemeForm } from "../../themes/themeForm";
+import { ThemeForm } from "../../styles/themes/themeForm";
 import { Button } from "../../components/Button";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "../../hooks/ContextHook";

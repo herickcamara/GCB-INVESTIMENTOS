@@ -1,5 +1,5 @@
 import { useForm } from "../../hooks/ContextHook";
-import { DashBord } from "../../themes/DashbordTheme";
+import { DashBord } from "../../styles/themes/DashbordTheme";
 import { State } from "../../types/ReducerState";
 import * as C from "./styled";
 
@@ -8,7 +8,9 @@ export const DashBordHome = () => {
   return (
     <DashBord>
       <C.Container>
-        <h1>ola {}</h1>
+        <C.SubContainer>
+          <h1>Seja Bem-Vindo, {state.setName}</h1>
+        </C.SubContainer>
       </C.Container>
     </DashBord>
   );

@@ -3,9 +3,9 @@ import { ChangeEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../../components/Button";
 import { Input } from "../../components/input";
-import { MainTheme } from "../../themes/ThemeMain";
+import { MainTheme } from "../../styles/themes/ThemeMain";
 
-import illustration from "../../assets/Illustration.svg";
+import illustration from "../../styles/assets/Illustration.svg";
 import { Header } from "../../components/Header";
 import { DbFake } from "../../helpers/useSetData";
 export const SignIn = () => {
@@ -30,7 +30,7 @@ export const SignIn = () => {
         return setMessage(message);
       }
       const user = [...data.user];
-      return (window.location.href = `/:${user[0].setName}`);
+      return (window.location.href = `/home/:${user[0].setName}`);
     }
   };
   return (

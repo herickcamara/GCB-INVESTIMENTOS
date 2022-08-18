@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import * as C from "./styled";
-import close from "../../assets/close-small-svgrepo-com.svg";
-import menu from "../../assets/menu-svgrepo-com.svg";
+import close from "../../styles/assets/close-small-svgrepo-com.svg";
+import menu from "../../styles/assets/menu-svgrepo-com.svg";
 import { Auth } from "../../helpers/auth";
 import { useForm } from "../../hooks/ContextHook";
 import { Button } from "../Button";
@@ -51,7 +51,7 @@ export const Menu = () => {
             <Link to={`/home/:${state.setName}`}>Home</Link>
           </li>
           <li>
-            <Link to={`/home/:sobre`}>Sobre</Link>
+            <Link to={`/about/:${state.setName}`}>Sobre</Link>
           </li>
           <Button onClick={isLogged} label="Sair" />
         </C.Ul>

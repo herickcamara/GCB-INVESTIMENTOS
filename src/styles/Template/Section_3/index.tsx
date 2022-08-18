@@ -1,5 +1,5 @@
 import * as C from "./styled";
-import { Button } from "../../components/Button";
+import { Button } from "../../../components/Button";
 import { MainTheme } from "../../themes/ThemeMain";
 
 import service from "../../assets/bloco_services.svg";

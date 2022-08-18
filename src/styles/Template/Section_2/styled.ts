@@ -4,13 +4,9 @@ export const Container = styled.div`
   padding: 20px;
   text-align: center;
   h2 {
-    font-size: 30px;
+    font-size: 2rem;
+    margin: 30px 0px;
     color: var(--color-h2);
-  }
-  p {
-    color: #888;
-    font-size: 20px;
-    margin: 5px 0px;
   }
 `;
 export const GridArea = styled.div`

@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   max-width: 484px;
   min-width: 200px;
+  min-height: 269px;
   width: 100%;
   display: flex;
   overflow: hidden;
@@ -30,7 +31,8 @@ export const Container = styled.div`
     justify-content: center;
     overflow: hidden;
     img {
-      flex: 1;
+      min-height: 269px;
+      width: auto;
     }
   }
   @media (max-width: 430px) {

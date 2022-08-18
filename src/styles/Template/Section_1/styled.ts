@@ -6,10 +6,8 @@ export const Container = styled.section`
     width: 50%;
     height: 100%;
     margin-top: 140px;
-
     h2 {
-      font-size: 44px;
-      color: var(--color-h2);
+      line-height: 4rem;
     }
     div {
       max-width: 267px;
@@ -63,14 +61,12 @@ export const Container = styled.section`
 
   @media (max-width: 321px) {
     .aside {
-      width: 100%;
+      width: 90%;
       text-align: start;
       h2 {
         margin-right: auto;
-
-        font-size: 25px;
-
-        color: var(--color-h2);
+        line-height: 3rem;
+        font-size: 2rem;
       }
 
       div {

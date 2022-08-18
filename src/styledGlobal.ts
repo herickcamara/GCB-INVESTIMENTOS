@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
 * {
@@ -17,6 +17,26 @@ export const GlobalStyle = createGlobalStyle`
       justify-content: space-evenly;
       list-style-type: none;
     }
+
+    h2 {
+      font-size: 2.75rem;
+      color: var(--color-h2);
+    }
+h3{
+ color :#554d7f;
+}
+    p {
+      color: var(--color-p);
+      font-size: 1.25rem;
+      margin: 5px 0px;
+    }
+
+    
+    @media (max-width: 321px) {
+      h2 {
+        font-size: 1.56rem;
+      }
+    }
   }
 
-`
+`;

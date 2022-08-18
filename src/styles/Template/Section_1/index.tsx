@@ -1,9 +1,9 @@
 import * as C from "./styled";
-import { Header } from "../../components/Header";
-import { Menu } from "../../components/Menu";
+import { Header } from "../../../components/Header";
+import { Menu } from "../../../components/Menu";
 import { MainTheme } from "../../themes/ThemeMain";
-import { Input } from "../../components/input";
-import { Button } from "../../components/Button";
+import { Input } from "../../../components/input";
+import { Button } from "../../../components/Button";
 
 import illustration from "../../assets/Illustration.svg";
 import search from "../../assets/magnifyingGlass.png";

@@ -1,16 +1,13 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  flex:1;
-  min-width: 243px;
-  margin: 0px 20px;
-  display: flex;
-  flex-direction: column;
-  border-radius: 8px;
-  background-color: #fff;
-  padding-bottom: 15px;
-  box-shadow: 5px 5px 20px #ccc;
-  
+min-height: 400px;
+max-width: 348px;
+background: transparent;
+display: flex;
+flex-direction: column;
+box-shadow: rgb(0 0 0 / 20%) 0px 4px 8px 0px,
+ rgb(0 0 0 / 19%) 0px 6px 20px 0px;
   .imgArea {
     width: 100%;
     display: contents;

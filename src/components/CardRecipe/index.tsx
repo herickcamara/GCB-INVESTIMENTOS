@@ -12,7 +12,7 @@ export const CardRecipe = ({ img, title }: Prop) => {
       </div>
       <div>
         <h3>{title}</h3>
-        <Button label="See Recipe" />
+        <Button pd="20px 10px" label="See Recipe" />
       </div>
     </C.Container>
   );
