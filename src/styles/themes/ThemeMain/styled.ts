@@ -5,7 +5,7 @@ export const Container = styled.div<{
   pos?: string;
   img2?: string;
 }>`
-  max-width: 1440px;
+  max-width: 1240px;
   min-height: 100vh;
   margin: auto;
   padding: 10px;
@@ -17,7 +17,7 @@ export const Container = styled.div<{
   background-position: ${(props) => props.pos ?? "left top"};
 
   .subContainer {
-    max-width: 1190px;
+    max-width: 980px;
     width: 100%;
     height: inherit;
     margin: auto;

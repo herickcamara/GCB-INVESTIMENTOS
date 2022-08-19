@@ -22,7 +22,7 @@ export const Grid = styled.section`
   justify-content: center;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  gap: 30px;
 
   @media (max-width: 900px) {
     grid-template-columns: 1fr;
