@@ -8,6 +8,9 @@ export const Container = styled.div`
 `;
 export const SubContainer = styled.div`
   width: 500px;
+  height: 200px;
+  box-shadow: 2px 5px 10px #888;
+
   margin: auto;
   @media (max-width: 500px) {
     width: 90%;
