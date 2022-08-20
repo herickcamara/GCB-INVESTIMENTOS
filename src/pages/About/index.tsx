@@ -44,11 +44,11 @@ export const About = () => {
                 <p>{state.city}</p>
               </div>
               <div>
-                <h3>BARRIO:</h3>
+                <h3>BAIRRO:</h3>
                 <p>{state.district}</p>
               </div>
               <div>
-                <h3>RUA:</h3>
+                <h3>RUA :</h3>
                 <p>{state.street}</p>
               </div>
               <div>

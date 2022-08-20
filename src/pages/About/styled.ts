@@ -10,6 +10,8 @@ export const Container = styled.div`
 export const SubContainer = styled.div`
   width: 500px;
   .infor {
+    box-shadow: 2px 5px 10px #888;
+    padding: 20px;
     h2 {
       margin-bottom: 25px;
     }
