@@ -8,18 +8,24 @@ import { FormAction } from "../../Reducer/useReduce";
 import { State } from "../../types/ReducerState";
 import { useFormContex } from "../../hooks/ContextHook";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { API } from "../../services/api";
 
 export const Step2 = () => {
   const navigate = useNavigate();
-
+  const { state, dispatch } = useFormContex();
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<State>();
-  const { state, dispatch } = useFormContex();
+  const onSubmit: SubmitHandler<State> = (data) => setState(data);
+  const handleBackStep = () => navigate(-1);
+  const setcurrent = () =>
+    dispatch({ type: FormAction.setCurrentStep, payload: 2 });
+
+  const setState = (data: State) => {
+    dispatch({ type: FormAction.zipCode, payload: data.zipCode });
+    navigate("/step3");
+  };
 
   useEffect(() => {
     if (state.cpf === "") {
@@ -27,44 +33,31 @@ export const Step2 = () => {
     }
     setcurrent();
   }, []);
-  const setcurrent = () => {
-    dispatch({
-      type: FormAction.setCurrentStep,
-      payload: 2,
-    });
-  };
-
-  const handleNameChange: SubmitHandler<State> = ({ zipCode }: State) => {
-    dispatch({
-      type: FormAction.zipCode,
-      payload: zipCode,
-    });
-
-    return navigate("/step3");
-  };
-  const handleBackStep = () => navigate(-1);
-
   return (
-    <ThemeForm title="Register" desc="Sign up to enter and start your diet">
+    <ThemeForm
+      title={`${state.setName} ${state.setLastName}`}
+      desc="Para acessar conclua o seu cadastro"
+    >
       <C.Container>
         <p>Passo 2/4</p>
-        <h2>Olá {state.setName}, insira o CEP</h2>
+        <h2>Olá {state.setName}, insira o seu CEP</h2>
         <p>Preencha o campo abaixo!</p>
 
         <hr />
 
-        <form onSubmit={handleSubmit(handleNameChange)}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="gridArea">
             <Input
               label="CEP:"
-              placeHolder="CEP:"
+              placeHolder="CEP"
               register={register}
               required
               path="zipCode"
+              value={state.zipCode}
             />
           </div>
           <C.BtmArea>
-            <Button type="submit" bg="--color-h2" label="Proximo→" />
+            <Button type="submit" bg="--color-h2" label="Próximo→" />
           </C.BtmArea>
         </form>
         <Button onClick={handleBackStep} bg="--color-h2" label="←Voltar" />

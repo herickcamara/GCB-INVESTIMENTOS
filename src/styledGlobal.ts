@@ -6,7 +6,9 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
     font-family: Open-Sans, Helvetica, Sans-Serif;
-    
+    span{
+      color: #ff0000;
+    }
     a{
       color:#f5f5f5;
       text-decoration:none;

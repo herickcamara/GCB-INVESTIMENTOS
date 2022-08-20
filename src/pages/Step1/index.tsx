@@ -8,18 +8,18 @@ import { useNavigate } from "react-router-dom";
 
 import { FormAction } from "../../Reducer/useReduce";
 import { filterData } from "../../helpers/filterDate";
-import { State } from "../../types/ReducerState";
 import { useFormContex } from "../../hooks/ContextHook";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { State } from "../../types/ReducerState";
 
 export const Step1 = () => {
   const navigate = useNavigate();
+  const { state, dispatch } = useFormContex();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<State>();
-  const { state, dispatch } = useFormContex();
 
   useEffect(() => {
     setcurrent();
@@ -32,39 +32,22 @@ export const Step1 = () => {
     });
   };
 
-  const handleNameChange: SubmitHandler<State> = ({
-    setName,
-    dateNacimento,
-    setLastName,
-    cpf,
-  }: State) => {
-    dispatch({
-      type: FormAction.cpf,
-      payload: cpf,
-    });
-    dispatch({
-      type: FormAction.setName,
-      payload: setName,
-    });
-    dispatch({
-      type: FormAction.setLastName,
-      payload: setLastName,
-    });
-
-    dispatch({
-      type: FormAction.dateNacimento,
-      payload: dateNacimento,
-    });
-
-    if (filterData(dateNacimento) < 18) {
-      return alert("conteudo minimo para 18 anos");
-    }
-
-    return navigate("/step2");
+  const setState = (data: State) => {
+    const { dateNacimento, setName, setLastName, cpf } = data;
+    dispatch({ type: FormAction.setName, payload: setName });
+    dispatch({ type: FormAction.setLastName, payload: setLastName });
+    dispatch({ type: FormAction.cpf, payload: cpf });
+    dispatch({ type: FormAction.dateNacimento, payload: dateNacimento });
+    navigate("/step2");
   };
 
+  const onSubmit: SubmitHandler<State> = (data) => setState(data);
+
   return (
-    <ThemeForm title="Register" desc="Sign up to enter and start your diet">
+    <ThemeForm
+      title="Cadastre-se"
+      desc="Inscreva-se para entrar e começar sua dieta"
+    >
       <C.Container>
         <p>{state.setName}</p>
         <p>Passo 1/4</p>
@@ -72,41 +55,51 @@ export const Step1 = () => {
         <p>Preencha os campos abaixo! </p>
 
         <hr />
-        <form onSubmit={handleSubmit(handleNameChange)}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="gridArea">
             <Input
               label="CPF:"
-              placeHolder="CPF:"
+              placeHolder="CPF"
               register={register}
               path="cpf"
               required
+              value={state.cpf}
             />
+            {errors.cpf && <span>Este Campo é Obrigatório</span>}
 
             <Input
               label="Nome:"
-              placeHolder="Nome:"
+              placeHolder="Nome"
               register={register}
               path="setName"
               required
+              value={state.setName}
             />
+            {errors.setName && <span>Este Campo é Obrigatório</span>}
+
             <Input
               label="Sobrenome:"
-              placeHolder="Sobrenome:"
+              placeHolder="Sobrenome"
               register={register}
               path="setLastName"
               required
+              value={state.setLastName}
             />
+            {errors.setLastName && <span>Este Campo é Obrigatório</span>}
+
             <Input
-              label="dateNacimento:"
-              placeHolder="dateNacimento:"
+              label="Data de Nascimento:"
+              placeHolder="Data de Nascimento"
               register={register}
               path="dateNacimento"
+              type="date"
               required
+              value={state.dateNacimento}
             />
+            {errors.dateNacimento && <span>Este Campo é Obrigatório</span>}
           </div>
 
-          {errors.setLastName && <span>This field is required</span>}
-          <Button type="submit" label="Proximo →" />
+          <Button type="submit" label="Próximo →" />
         </form>
       </C.Container>
     </ThemeForm>

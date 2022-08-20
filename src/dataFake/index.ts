@@ -15,58 +15,58 @@ import post4 from "../styles/assets/blog_image_1.svg";
 export const Data = {
   users: [
     {
-      userName: "Rafael exemplo",
+      userName: "Rafael Augusto",
       postImg: post1,
-      postLabel: "Exemplo explom",
+      postLabel: "Nutrition: Tips for Improving Your Health",
       userAvatar: rafael,
     },
     {
-      userName: "pablo exemplo",
+      userName: "Pablo Almeida",
       postImg: post2,
-      postLabel: "Exemplo explom",
+      postLabel: "The top 10 benefits of eating healthy",
       userAvatar: pablo,
     },
     {
-      userName: "Ricardo Exemplo",
+      userName: "Ricardo Albuquerque",
       postImg: post3,
-      postLabel: "Exemplo explom",
+      postLabel: "The top 10 benefits of eating healthy",
       userAvatar: ricardo,
     },
     {
-      userName: "Cesar Exemplo",
+      userName: "Cesar Gonçalves",
       postImg: post4,
-      postLabel: "Exemplo explom",
+      postLabel: "Quick-start guide to nuts and seeds",
       userAvatar: cesar,
     },
     {
-      userName: "pablo exemplo",
+      userName: "Pablo Almeida",
       postImg: post2,
-      postLabel: "Exemplo explom",
+      postLabel: "The top 10 benefits of eating healthy",
       userAvatar: pablo,
     },
     {
-      userName: "Rafael exemplo",
+      userName: "Rafael Augusto",
       postImg: post1,
-      postLabel: "Exemplo explom",
+      postLabel: "Nutrition: Tips for Improving Your Health",
       userAvatar: rafael,
     },
   ],
   recipe: [
     {
       img: comida1,
-      tetle: "Exemplo",
+      tetle: "Broccoli Salad with Bacon",
     },
     {
       img: comida2,
-      tetle: "Exemplo",
+      tetle: "Classic Beef Burgers",
     },
     {
       img: comida3,
-      tetle: "Exemplo",
+      tetle: "Classic Potato Salad",
     },
     {
       img: comida4,
-      tetle: "Exemplo",
+      tetle: "Cherry Cobbler on the Grill",
     },
   ],
 };
