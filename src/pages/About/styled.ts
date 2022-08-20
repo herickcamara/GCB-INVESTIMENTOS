@@ -23,6 +23,7 @@ export const SubContainer = styled.div`
 
   @media (max-width: 500px) {
     width: 90%;
+    height: 80%;
     h2 {
       text-align: center;
     }
