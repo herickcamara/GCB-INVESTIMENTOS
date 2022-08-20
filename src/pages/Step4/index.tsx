@@ -35,11 +35,13 @@ export const Step4 = () => {
   };
 
   const setState = async ({ email, password }: State) => {
-    await dispatch({ type: FormAction.email, payload: email });
-    await dispatch({ type: FormAction.password, payload: password });
-    const res = await DbFake.postDBFake(state);
+    dispatch({ type: FormAction.email, payload: email });
+    dispatch({ type: FormAction.password, payload: password });
+    const user = { ...state, email, password };
+    await DbFake.postDBFake(user);
     navigate("/signin");
   };
+
   const handleBackStep = () => navigate(-1);
   const onSubmit: SubmitHandler<State> = (data) => {
     setState(data);
@@ -50,6 +52,7 @@ export const Step4 = () => {
       desc="Para acessar conclua o seu cadastro"
     >
       <C.Container>
+        {state.email}
         <p>Passo 4/4</p>
         <h2>Para continuar insira o seu e-mail e senha</h2>
         <p>Preencha os campos abaixo! </p>

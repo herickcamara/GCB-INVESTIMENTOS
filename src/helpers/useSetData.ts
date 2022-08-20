@@ -4,12 +4,18 @@ export const DbFake = {
   postDBFake: async (user: State) => {
     try {
       const userDb = await localStorage.getItem("@user_db");
-      console.log(userDb);
       if (userDb) {
-        const data = [...JSON.parse(userDb), user];
-        localStorage.setItem("@user_db", JSON.stringify(data));
-        alert("Dados salvo con susseso");
-        return { status: 200 };
+        const data = JSON.parse(userDb);
+        const UserExite = await data.filter(
+          (users: State) => users.email === user.email || users.cpf === user.cpf
+        );
+        if (UserExite.length === 0) {
+          const newData = [...data, user];
+          localStorage.setItem("@user_db", JSON.stringify(newData));
+          alert("Dados salvo con susseso");
+          return { status: 200 };
+        }
+        return alert(`Usuario ja exite `);
       } else {
         const data: State[] = [];
         data.push(user);
