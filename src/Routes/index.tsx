@@ -22,7 +22,7 @@ export const ListRouter = () => {
         <Route path="/step2" element={<Step2 />} />
         <Route path="/step3" element={<Step3 />} />
         <Route path="/step4" element={<Step4 />} />
-        {/* <Route path="/*" element={<NotFound />} /> */}
+        <Route path="/*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
