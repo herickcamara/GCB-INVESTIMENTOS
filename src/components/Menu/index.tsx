@@ -10,7 +10,6 @@ import { Button } from "../Button";
 export const Menu = () => {
   let logged = Auth();
 
-  const { state, dispatch } = useFormContex();
   const [drop, setDrop] = useState<boolean>(false);
   const handleMenuDrop = () => {
     if (drop) {
