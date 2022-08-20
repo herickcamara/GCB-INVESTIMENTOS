@@ -17,10 +17,11 @@ export const Container = styled.div`
     background-color: var(--color-h2);
   }
 
-  .gridArea {
+  form .gridArea {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 6px;
+    margin-bottom: 10px;
     label {
       input {
         margin-top: 7px;
@@ -35,15 +36,17 @@ export const Container = styled.div`
       width: 200px;
       margin: auto;
     }
+
     @media (max-width: 270px) {
       width: 90%;
+      div {
+        width: 96%;
 
-      label {
         input {
-          width: 80%;
+          width: 100%;
         }
         input[type="date"] {
-          width: 80%;
+          width: 100%;
         }
       }
     }
@@ -56,6 +59,10 @@ export const Container = styled.div`
     margin-top: 10px;
   }
   @media (max-width: 480px) {
+    from {
+      width: 200px;
+      margin: auto;
+    }
     h2 {
       font-size: 20px;
       text-align: center;
@@ -67,6 +74,20 @@ export const Container = styled.div`
     }
     button {
       margin: auto;
+    }
+  }
+
+  @media (max-width: 270px) {
+    form {
+      width: 98%;
+    }
+    label {
+      input {
+        width: 80%;
+      }
+      input[type="date"] {
+        width: 80%;
+      }
     }
   }
 `;

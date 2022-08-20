@@ -5,22 +5,30 @@ import { Input } from "../../components/input";
 import { ThemeForm } from "../../styles/themes/themeForm";
 import { Button } from "../../components/Button";
 import { useNavigate } from "react-router-dom";
-import { useForm } from "../../hooks/ContextHook";
+import { useFormContex } from "../../hooks/ContextHook";
 import { FormAction } from "../../Reducer/useReduce";
 import { API } from "../../services/api";
+import { State } from "../../types/ReducerState";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 export const Step3 = () => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<State>();
+  const { state, dispatch } = useFormContex();
   const navigate = useNavigate();
-  const { state, dispatch } = useForm();
   const { city, numberHouse, street, district, uf } = state;
-  useEffect(() => {
-    useSetData();
-  }, []);
   useEffect(() => {
     if (state.zipCode === "") {
       navigate("/step2");
     }
     setcurrent();
+  }, []);
+  useEffect(() => {
+    useSetData();
   }, []);
   const setcurrent = () => {
     dispatch({
@@ -52,19 +60,16 @@ export const Step3 = () => {
     }
   };
 
-  const handleNextStep = () => {
-    if (!numberHouse) {
-      return alert("Preencha o compo de number");
-    }
-    navigate("/step4");
-  };
   const handleBackStep = () => navigate(-1);
 
-  const handleNumberChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleNameChange: SubmitHandler<State> = async ({
+    numberHouse,
+  }: State) => {
     dispatch({
       type: FormAction.numberHouse,
-      payload: e.target.value,
+      payload: numberHouse,
     });
+    navigate("/step4");
   };
 
   return (
@@ -77,38 +82,47 @@ export const Step3 = () => {
           {state.zipCode}
         </p>
         <hr />
-        <div className="gridArea">
-          <label>
-            bairro: <br />
-            <Input disabled value={district} />
-          </label>
-          <label>
-            uf: <br />
-            <Input disabled value={uf} />
-          </label>
-          <label>
-            Cidade: <br />
-            <Input disabled value={city} />
-          </label>
-          <label>
-            Rua: <br />
-            <Input disabled value={street} />
-          </label>
-          <label>
-            Numero: <br />
+
+        <form onSubmit={handleSubmit(handleNameChange)}>
+          <div className="gridArea">
             <Input
-              autoFocus={true}
-              type="number"
-              value={numberHouse}
-              handleOnChange={handleNumberChange}
+              register={register}
+              required
+              path="district"
+              disabled
+              value={district}
+            />
+
+            <Input register={register} required path="uf" disabled value={uf} />
+
+            <Input
+              register={register}
+              required
+              path="city"
+              disabled
+              value={city}
+            />
+
+            <Input
+              register={register}
+              required
+              path="street"
+              disabled
+              value={street}
+            />
+
+            <Input
+              register={register}
+              required
+              path="numberHouse"
               placeHolder="Numeroº:"
             />
-          </label>
-        </div>
-        <C.BtmArea>
-          <Button onClick={handleBackStep} bg="--color-h2" label="←Voltar" />
-          <Button onClick={handleNextStep} bg="--color-h2" label="Proximo→" />
-        </C.BtmArea>
+          </div>
+          <C.BtmArea>
+            <Button onClick={handleBackStep} bg="--color-h2" label="←Voltar" />
+            <Button type="submit" bg="--color-h2" label="Proximo→" />
+          </C.BtmArea>
+        </form>
       </C.Container>
     </ThemeForm>
   );

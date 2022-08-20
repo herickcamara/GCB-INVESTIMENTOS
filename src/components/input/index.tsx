@@ -1,30 +1,35 @@
-import React, { ChangeEvent } from "react";
+import { Path, UseFormRegister } from "react-hook-form";
+import { State } from "../../types/ReducerState";
+
 import * as C from "./styled";
 
-type Prop = {
+type InputProps = {
+  path: Path<State>;
+  register: UseFormRegister<State>;
+  required?: boolean;
   placeHolder?: string;
-  type?: string;
-  autoFocus?: boolean;
-  value?: string | number;
-  handleOnChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  label?: string;
   disabled?: boolean;
+  value?: string | number;
 };
 export const Input = ({
   placeHolder,
-  autoFocus,
-  type,
-  value,
-  handleOnChange,
+  label,
+  path,
   disabled,
-}: Prop) => {
+  register,
+  required,
+  value,
+}: InputProps) => {
   return (
-    <C.Input
-      placeholder={placeHolder}
-      type={type}
-      autoFocus={autoFocus}
-      value={value}
-      disabled={disabled}
-      onChange={handleOnChange}
-    />
+    <div style={{ marginBottom: 10 }}>
+      <label style={{ marginBottom: 10 }}>{label}</label> <br />
+      <C.Input
+        value={value}
+        {...register(path, { required })}
+        placeholder={placeHolder}
+        disabled={disabled}
+      />
+    </div>
   );
 };

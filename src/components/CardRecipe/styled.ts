@@ -38,5 +38,6 @@ export const Container = styled.div`
     flex-direction: column;
     min-width: 141px;
     width: 83%;
+    height: 443px;
   }
 `;

@@ -1,10 +1,10 @@
-import { useForm } from "../../hooks/ContextHook";
+import { useFormContex } from "../../hooks/ContextHook";
 import { DashBord } from "../../styles/themes/DashbordTheme";
 import { State } from "../../types/ReducerState";
 import * as C from "./styled";
 
 export const About = () => {
-  const { state } = useForm();
+  const { state } = useFormContex();
   return (
     <DashBord>
       <C.Container>

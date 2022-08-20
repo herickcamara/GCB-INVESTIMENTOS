@@ -1,9 +1,9 @@
 import * as C from "./styled";
 import { Button } from "../../../components/Button";
-import { Input } from "../../../components/input";
 import { MainTheme } from "../../themes/ThemeMain";
 
 import imgEnd from "../../assets/bloco_final_image.svg";
+import { Input } from "../../../components/input/styled";
 
 export const Section_5 = () => {
   return (
@@ -14,7 +14,10 @@ export const Section_5 = () => {
             Join our membership <br /> to get special offer
           </h2>
           <div>
-            <Input />
+            <Input
+              placeholder="Enter your email address
+"
+            />
             <Button label="Join" />
           </div>
         </aside>

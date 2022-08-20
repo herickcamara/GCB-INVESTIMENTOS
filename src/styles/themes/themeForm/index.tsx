@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import * as C from "./styled";
 import bgImg from "../../assets/newservices.svg";
 import { SiderbarItem } from "../../../components/SidebarItem";
-import { useForm } from "../../../hooks/ContextHook";
+import { useFormContex } from "../../../hooks/ContextHook";
 import { Header } from "../../../components/Header";
 import { Button } from "../../../components/Button";
 import { Link } from "react-router-dom";
@@ -12,7 +12,7 @@ type Props = {
   desc?: string;
 };
 export const ThemeForm = ({ title, desc, children }: Props) => {
-  const { state } = useForm();
+  const { state } = useFormContex();
 
   return (
     <C.Containe img={bgImg}>

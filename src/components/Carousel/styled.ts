@@ -16,8 +16,8 @@ export const AreaArrowLeft = styled.div<{
 
   box-shadow: ${(props) =>
     props.shadow
-      ? "inset 34px 0px 34px 0px #fff"
-      : "inset -34px 0px 34px 0px #fff"};
+      ? "inset 38px 0px 54px 2px rgb(255 255 255 / 96%)"
+      : "inset -38px 0px 54px 2px rgb(255 255 255 / 96%)"};
 
   display: ${(prosp) => (prosp.disabled ? "none" : "flex")};
 

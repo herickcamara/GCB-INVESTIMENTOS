@@ -1,6 +1,5 @@
 import { DataFakeUser } from "../../types/TypeDataFake";
 import Item from "./Item";
-import * as C from "./styled";
 
 type Prop = {
   item: DataFakeUser;
@@ -8,13 +7,11 @@ type Prop = {
 export const Post = ({ item }: Prop) => {
   return (
     <Item>
+      <div className="imgArea">
+        <img src={item.postImg} alt="" />
+      </div>
       <div className="container">
-        <div className="imgArea">
-          <img src={item.postImg} alt="" />
-        </div>
-        <div className="titleArea">
-          <h2>{item.postLabel}</h2>
-        </div>
+        <h2>{item.postLabel}</h2>
         <div className="userArea">
           <div className="avatarArea">
             <div className="avatar">
@@ -22,7 +19,7 @@ export const Post = ({ item }: Prop) => {
             </div>
           </div>
           <div className="userName">
-            <p>{item.userName}</p>
+            <span>{item.userName}</span>
           </div>
         </div>
       </div>

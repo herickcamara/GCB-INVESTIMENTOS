@@ -1,5 +1,5 @@
 import * as C from "./styled";
-import Carousel, { RenderArrowProps, ItemObject } from "react-elastic-carousel";
+import Carousel, { RenderArrowProps } from "@itseasy21/react-elastic-carousel";
 import arrowLeft from "../../styles/assets/arrowLeft.svg";
 import arrowRight from "../../styles/assets/arrowRight.svg";
 import { Post } from "../PostCard";
@@ -11,10 +11,10 @@ type Props = {
 
 export const CarouselComponent = ({ Posts }: Props) => {
   const breakPoints = [
-    { width: 421, itemsToShow: 1 },
-    { width: 769, itemsToShow: 3 },
-    { width: 1015, itemsToShow: 4 },
-    { width: 1229, itemsToShow: 5 },
+    { width: 187, itemsToShow: 1 },
+    { width: 521, itemsToShow: 2 },
+    { width: 721, itemsToShow: 3 },
+    { width: 780, itemsToShow: 3 },
   ];
 
   const myArrow = ({ type, onClick, isEdge }: RenderArrowProps) => {
@@ -37,11 +37,13 @@ export const CarouselComponent = ({ Posts }: Props) => {
   return (
     <Carousel
       renderArrow={myArrow}
-      itemPadding={[10, 10]}
+      isRTL={false}
+      itemsToScroll={2}
       breakPoints={breakPoints}
+      transitionMs={1000}
     >
       {Posts.map((item, index) => {
-        return <Post key={index} item={item} />;
+        return <Post item={item} key={index} />;
       })}
     </Carousel>
   );

@@ -5,13 +5,21 @@ import { Input } from "../../components/input";
 import { ThemeForm } from "../../styles/themes/themeForm";
 import { Button } from "../../components/Button";
 import { useNavigate } from "react-router-dom";
-import { useForm } from "../../hooks/ContextHook";
+import { useFormContex } from "../../hooks/ContextHook";
 import { FormAction } from "../../Reducer/useReduce";
 import { DbFake } from "../../helpers/useSetData";
+import { useForm } from "react-hook-form";
+import { State } from "../../types/ReducerState";
 
 export const Step4 = () => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<State>();
   const navigate = useNavigate();
-  const { state, dispatch } = useForm();
+  const { state, dispatch } = useFormContex();
   const { email, numberHouse, password } = state;
   useEffect(() => {
     if (numberHouse === undefined) {
@@ -26,31 +34,7 @@ export const Step4 = () => {
       payload: 4,
     });
   };
-  const handleNextStep = async () => {
-    const next = email && password;
-    if (next) {
-      if (email.includes("@")) {
-        const response = await DbFake.postDBFake(state);
-        if (response.status >= 500) {
-          console.log(response.error);
-          return alert(response.message);
-        }
 
-        return navigate("/signin");
-      }
-
-      return alert("email invalido");
-    }
-    return alert("Preencha todos os campos");
-  };
-  const handleBackStep = () => navigate(-1);
-
-  const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch({
-      type: FormAction.email,
-      payload: e.target.value,
-    });
-  };
   const handlePassChange = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch({
       type: FormAction.password,
@@ -68,28 +52,16 @@ export const Step4 = () => {
         <div className="gridArea">
           <label>
             Email: <br />
-            <Input
-              autoFocus={true}
-              type="email"
-              value={email}
-              handleOnChange={handleEmailChange}
-              placeHolder="Email"
-            />
+            <Input register={register} path="email" placeHolder="Email" />
           </label>
           <label>
             Password: <br />
-            <Input
-              autoFocus={true}
-              type="password"
-              value={password}
-              handleOnChange={handlePassChange}
-              placeHolder="Password"
-            />
+            <Input register={register} path="email" placeHolder="Password" />
           </label>
         </div>
         <C.BtmArea>
-          <Button onClick={handleBackStep} bg="--color-h2" label="←Voltar" />
-          <Button onClick={handleNextStep} bg="--color-h2" label="Proximo→" />
+          {/* <Button onClick={} bg="--color-h2" label="←Voltar" /> */}
+          {/* <Button onClick={} bg="--color-h2" label="Proximo→" /> */}
         </C.BtmArea>
       </C.Container>
     </ThemeForm>

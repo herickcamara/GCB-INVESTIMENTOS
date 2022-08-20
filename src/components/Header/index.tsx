@@ -1,7 +1,8 @@
 import { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { Auth } from "../../helpers/auth";
-import { useForm } from "../../hooks/ContextHook";
+import { useFormContex } from "../../hooks/ContextHook";
+
 import * as C from "./styled";
 
 type Prop = {
@@ -11,7 +12,7 @@ type Prop = {
 };
 export const Header = ({ bg, title, children }: Prop) => {
   let logged = Auth();
-  const { state } = useForm();
+  const { state } = useFormContex();
   return (
     <C.Container style={{ backgroundColor: bg }}>
       <Link to={logged ? `/home/:${state.setName}}` : "/"}>

@@ -4,13 +4,13 @@ import * as C from "./styled";
 import close from "../../styles/assets/close-small-svgrepo-com.svg";
 import menu from "../../styles/assets/menu-svgrepo-com.svg";
 import { Auth } from "../../helpers/auth";
-import { useForm } from "../../hooks/ContextHook";
+import { useFormContex } from "../../hooks/ContextHook";
 import { Button } from "../Button";
 
 export const Menu = () => {
   let logged = Auth();
 
-  const { state, dispatch } = useForm();
+  const { state, dispatch } = useFormContex();
   const [drop, setDrop] = useState<boolean>(false);
   const handleMenuDrop = () => {
     if (drop) {

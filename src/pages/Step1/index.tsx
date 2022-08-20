@@ -1,18 +1,25 @@
 import * as C from "./styled";
-import { ChangeEvent, useEffect } from "react";
+import { useEffect } from "react";
 
 import { Input } from "../../components/input";
 import { ThemeForm } from "../../styles/themes/themeForm";
 import { Button } from "../../components/Button";
 import { useNavigate } from "react-router-dom";
-import { useForm } from "../../hooks/ContextHook";
+
 import { FormAction } from "../../Reducer/useReduce";
 import { filterData } from "../../helpers/filterDate";
+import { State } from "../../types/ReducerState";
+import { useFormContex } from "../../hooks/ContextHook";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 export const Step1 = () => {
   const navigate = useNavigate();
-  const { state, dispatch } = useForm();
-  const { setName, dateNacimento, cpf, setLastName } = state;
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<State>();
+  const { state, dispatch } = useFormContex();
 
   useEffect(() => {
     setcurrent();
@@ -24,93 +31,83 @@ export const Step1 = () => {
       payload: 1,
     });
   };
-  const handleNextStep = () => {
-    const next =
-      !cpf || !setName || !setLastName || !dateNacimento ? true : false;
 
-    if (next) {
-      return alert("Preencha todos os compos");
-    }
+  const handleNameChange: SubmitHandler<State> = ({
+    setName,
+    dateNacimento,
+    setLastName,
+    cpf,
+  }: State) => {
+    dispatch({
+      type: FormAction.cpf,
+      payload: cpf,
+    });
+    dispatch({
+      type: FormAction.setName,
+      payload: setName,
+    });
+    dispatch({
+      type: FormAction.setLastName,
+      payload: setLastName,
+    });
+
+    dispatch({
+      type: FormAction.dateNacimento,
+      payload: dateNacimento,
+    });
+
     if (filterData(dateNacimento) < 18) {
       return alert("conteudo minimo para 18 anos");
     }
-    navigate("/step2");
-  };
-  const handleCPFChange = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch({
-      type: FormAction.cpf,
-      payload: e.target.value,
-    });
-  };
-  const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch({
-      type: FormAction.setName,
-      payload: e.target.value,
-    });
-  };
 
-  const handleLastNameChange = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch({
-      type: FormAction.setLastName,
-      payload: e.target.value,
-    });
-  };
-  const handleDataNacimento = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch({
-      type: FormAction.dateNacimento,
-      payload: e.target.value,
-    });
+    return navigate("/step2");
   };
 
   return (
     <ThemeForm title="Register" desc="Sign up to enter and start your diet">
       <C.Container>
+        <p>{state.setName}</p>
         <p>Passo 1/4</p>
         <h2>Vamos começar com o seu nome e sobrenome</h2>
         <p>Preencha os campos abaixo! </p>
 
         <hr />
-        <div className="gridArea">
-          <label>
-            CPF: <br />
+        <form onSubmit={handleSubmit(handleNameChange)}>
+          <div className="gridArea">
             <Input
-              autoFocus={true}
-              type="text"
-              value={cpf}
-              handleOnChange={handleCPFChange}
-              placeHolder="CPF"
+              label="CPF:"
+              placeHolder="CPF:"
+              register={register}
+              path="cpf"
+              required
             />
-          </label>
-          <label>
-            Seu nome: <br />
-            <Input
-              type="text"
-              value={setName}
-              handleOnChange={handleNameChange}
-              placeHolder="Nome"
-            />
-          </label>
-          <label>
-            sobrenome: <br />
-            <Input
-              type="text"
-              value={setLastName}
-              handleOnChange={handleLastNameChange}
-              placeHolder="Sobrenome"
-            />
-          </label>
-          <label>
-            Date de nacimento: <br />
-            <Input
-              type="date"
-              value={dateNacimento}
-              handleOnChange={handleDataNacimento}
-              placeHolder="Data de nacimentor"
-            />
-          </label>
-        </div>
 
-        <Button onClick={handleNextStep} label="Proximo →" />
+            <Input
+              label="Nome:"
+              placeHolder="Nome:"
+              register={register}
+              path="setName"
+              required
+            />
+            <Input
+              label="Sobrenome:"
+              placeHolder="Sobrenome:"
+              register={register}
+              path="setLastName"
+              required
+            />
+            <Input
+              label="dateNacimento:"
+              placeHolder="dateNacimento:"
+              register={register}
+              path="dateNacimento"
+              required
+            />
+          </div>
+
+          {errors.setLastName && <span>This field is required</span>}
+          <Button type="submit" label="Proximo →" />
+        </form>
       </C.Container>
     </ThemeForm>
   );
