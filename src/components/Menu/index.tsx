@@ -48,10 +48,10 @@ export const Menu = () => {
       {logged && (
         <C.Ul active={drop}>
           <li>
-            <Link to={`/home/:${state.setName}`}>Home</Link>
+            <Link to={`/home/${state.setName}`}>Home</Link>
           </li>
           <li>
-            <Link to={`/about/:${state.setName}`}>Sobre</Link>
+            <Link to={`/about/${state.setName}`}>Sobre</Link>
           </li>
           <Button onClick={isLogged} label="Sair" />
         </C.Ul>

@@ -31,7 +31,7 @@ export const SignIn = () => {
         return alert(message);
       }
       const user = [...status.user];
-      return (window.location.href = `/home/:${user[0].setName}`);
+      return (window.location.href = `/home/${user[0].setName}`);
     }
   };
   const onSubmit: SubmitHandler<State> = (data) => signin(data);
