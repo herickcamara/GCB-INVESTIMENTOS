@@ -15,14 +15,14 @@ export const ListRouter = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/home/:slug" element={<DashBordHome />} />
-        <Route path="/about/:slug" element={<About />} />
+        <Route path="/home" element={<DashBordHome />} />
+        <Route path="/about" element={<About />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/step1" element={<Step1 />} />
         <Route path="/step2" element={<Step2 />} />
         <Route path="/step3" element={<Step3 />} />
         <Route path="/step4" element={<Step4 />} />
-        <Route path="/*" element={<NotFound />} />
+        {/* <Route path="/*" element={<NotFound />} /> */}
       </Routes>
     </BrowserRouter>
   );
