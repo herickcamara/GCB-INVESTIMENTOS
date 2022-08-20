@@ -5,6 +5,7 @@ import * as C from "./styled";
 
 export const About = () => {
   const { state } = useFormContex();
+
   return (
     <DashBord>
       <C.Container>

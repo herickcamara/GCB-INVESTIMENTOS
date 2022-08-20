@@ -10,6 +10,7 @@ import { Button } from "../Button";
 export const Menu = () => {
   let logged = Auth();
 
+  const { state, dispatch } = useFormContex();
   const [drop, setDrop] = useState<boolean>(false);
   const handleMenuDrop = () => {
     if (drop) {
@@ -47,10 +48,10 @@ export const Menu = () => {
       {logged && (
         <C.Ul active={drop}>
           <li>
-            <Link to={`/home`}>Home</Link>
+            <Link to={`/home/:${state.setName}`}>Home</Link>
           </li>
           <li>
-            <Link to={`/about`}>Sobre</Link>
+            <Link to={`/about/:${state.setName}`}>Sobre</Link>
           </li>
           <Button onClick={isLogged} label="Sair" />
         </C.Ul>
