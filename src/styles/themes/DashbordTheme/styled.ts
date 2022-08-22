@@ -5,7 +5,6 @@ export const Container = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex;
-  margin: auto;
   flex-direction: column;
   header {
     padding: 40px;
@@ -21,7 +20,11 @@ export const Container = styled.div`
 `;
 export const SubContainer = styled.div`
   flex: 1;
+  max-width: 980px;
+  width: 90%;
   display: flex;
+  margin: auto;
+
   align-items: center;
   justify-content: center;
 `;

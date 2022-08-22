@@ -25,6 +25,7 @@ export const DropsMenu = styled.div`
 export const Ul = styled.ul<{ active?: boolean }>`
   height: 40px;
   display: flex;
+  min-width: 388px;
   padding: 10px;
   align-items: center;
   justify-content: space-evenly;
@@ -53,7 +54,7 @@ export const Ul = styled.ul<{ active?: boolean }>`
   @media (max-width: 840px) {
     display: ${(props) => (props.active ? "block" : "none")};
     position: absolute;
-    width: 40%;
+
     top: 70px;
     text-align: center;
     height: auto;
@@ -84,8 +85,11 @@ export const Ul = styled.ul<{ active?: boolean }>`
       }
     }
   }
+  @media (max-width: 440px) {
+    min-width: 70%;
+  }
   @media (max-width: 321px) {
     font-size: 13px;
-    width: 70%;
+    min-width: 70%;
   }
 `;

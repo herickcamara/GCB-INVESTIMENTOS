@@ -51,6 +51,9 @@ export const Menu = () => {
             <Link to={`/home/${state.name}`}>start</Link>
           </li>
           <li>
+            <Link to={`/calculate-bmi/${state.name}`}>Calculate Bmi</Link>
+          </li>
+          <li>
             <Link to={`/about/${state.name}`}>about</Link>
           </li>
           <Button onClick={isLogged} label="go out" />

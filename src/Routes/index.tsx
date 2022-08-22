@@ -9,6 +9,7 @@ import { Step3 } from "../pages/Step3";
 import { Step4 } from "../pages/Step4";
 import { About } from "../pages/About";
 import { Privete } from "../pages/privete";
+import { BodyMassCulculator } from "../pages/bodyMassCalculator";
 
 export const ListRouter = () => {
   return (
@@ -28,6 +29,14 @@ export const ListRouter = () => {
           element={
             <Privete>
               <About />
+            </Privete>
+          }
+        />
+        <Route
+          path="/calculate-bmi/:slug"
+          element={
+            <Privete>
+              <BodyMassCulculator />
             </Privete>
           }
         />

@@ -65,7 +65,7 @@ export const SignIn = () => {
             register={register}
             required
             path="password"
-            placeHolder="Senha"
+            placeHolder="password"
           />
           {errors.password && <span>This field is required</span>}
 

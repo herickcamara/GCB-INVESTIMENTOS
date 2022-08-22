@@ -10,7 +10,7 @@ export const DashBordHome = () => {
     <DashBord>
       <C.Container>
         <C.SubContainer>
-          <h2>Seja Bem-Vindo, {state.name}</h2>
+          <h2>Welcome, {state.name}</h2>
         </C.SubContainer>
       </C.Container>
     </DashBord>
