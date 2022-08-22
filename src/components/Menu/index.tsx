@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import * as C from "./styled";
 import close from "../../styles/assets/close-small-svgrepo-com.svg";
-import menu from "../../styles/assets/menu-svgrepo-com.svg";
+import menu from "../../styles/assets/Group.svg";
 import { Auth } from "../../helpers/auth";
 import { useFormContext } from "../../hooks/ContextHook";
 import { Button } from "../Button";

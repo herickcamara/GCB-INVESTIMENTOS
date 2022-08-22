@@ -11,9 +11,23 @@ import { DbFake } from "../../services/dataBase";
 import { SubmitHandler } from "react-hook-form";
 import { State } from "../../types/ReducerState";
 import { useFormHook } from "../../hooks/useFormHook";
+import * as yup from "yup";
 
+const schema = yup.object({
+  // name: yup.string().required(),
+  // birthDate: yup.date().required(),
+  // // city: yup.string(),
+  // CPF: yup.string().required().max(11),
+  // district: yup.string(),
+  email: yup.string().required(),
+  // houseNumber: yup.number().positive().integer().required(),
+  password: yup.string().min(8).required(),
+  // state: yup.string(),
+  // street: yup.string(),
+  // zipCode: yup.number().positive().integer().required(),
+});
 export const Step4 = () => {
-  const { register, handleSubmit, errors } = useFormHook();
+  const { register, handleSubmit, errors } = useFormHook(schema);
   const navigate = useNavigate();
   const { state, dispatch } = useFormContext();
 
@@ -65,6 +79,7 @@ export const Step4 = () => {
               required
               placeHolder="Email"
             />
+            {errors.email && <span>{errors.email.message}</span>}
 
             <Input
               label="password:"
@@ -74,6 +89,7 @@ export const Step4 = () => {
               required
               type="password"
             />
+            {errors.password && <span>{errors.password.message}</span>}
           </div>
           <C.BtmArea>
             <Button onClick={handleBackStep} bg="--color-h2" label="← Back" />

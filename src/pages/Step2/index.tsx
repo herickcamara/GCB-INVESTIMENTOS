@@ -9,11 +9,25 @@ import { State } from "../../types/ReducerState";
 import { useFormContext } from "../../hooks/ContextHook";
 import { SubmitHandler } from "react-hook-form";
 import { useFormHook } from "../../hooks/useFormHook";
+import * as yup from "yup";
 
+const schema = yup.object({
+  // name: yup.string().required(),
+  // birthDate: yup.date().required(),
+  // // city: yup.string(),
+  // CPF: yup.string().required().max(11),
+  // district: yup.string(),
+  // email: yup.string().required(),
+  // houseNumber: yup.number().positive().integer().required(),
+  // password: yup.string().required(),
+  // state: yup.string(),
+  // street: yup.string(),
+  zipCode: yup.string().min(8).max(8).required(),
+});
 export const Step2 = () => {
   const navigate = useNavigate();
   const { state, dispatch } = useFormContext();
-  const { errors, handleSubmit, register } = useFormHook();
+  const { errors, handleSubmit, register } = useFormHook(schema);
   const onSubmit: SubmitHandler<State> = (data) => setState(data);
   const handleBackStep = () => navigate(-1);
   const setcurrent = () =>
@@ -52,7 +66,7 @@ export const Step2 = () => {
               path="zipCode"
               value={state.zipCode}
             />
-            {errors.zipCode && "be field is mandatory"}
+            {errors.zipCode && <span>{errors.zipCode.message}</span>}
           </div>
           <C.BtmArea>
             <Button onClick={handleBackStep} bg="--color-h2" label="← Back" />

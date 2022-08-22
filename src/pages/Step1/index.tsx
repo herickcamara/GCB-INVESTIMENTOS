@@ -12,11 +12,25 @@ import { useFormContext } from "../../hooks/ContextHook";
 import { SubmitHandler } from "react-hook-form";
 import { State } from "../../types/ReducerState";
 import { useFormHook } from "../../hooks/useFormHook";
+import * as yup from "yup";
 
+const schema = yup.object({
+  name: yup.string().required(),
+  birthDate: yup.date().required(),
+  // city: yup.string(),
+  CPF: yup.string().required().max(11),
+  // district: yup.string(),
+  // email: yup.string().required(),
+  // houseNumber: yup.number().positive().integer().required(),
+  // password: yup.string().required(),
+  // state: yup.string(),
+  // street: yup.string(),
+  // zipCode: yup.number().positive().integer().max(8).required(),
+});
 export const Step1 = () => {
   const navigate = useNavigate();
   const { state, dispatch } = useFormContext();
-  const { register, handleSubmit, errors } = useFormHook();
+  const { register, handleSubmit, errors } = useFormHook(schema);
 
   useEffect(() => {
     setcurrent();
@@ -58,7 +72,8 @@ export const Step1 = () => {
               required
               value={state.CPF}
             />
-            {errors.CPF && <span>This field is required</span>}
+
+            {errors.CPF && <span>{errors.CPF.message}</span>}
 
             <Input
               label="Name:"
@@ -68,7 +83,7 @@ export const Step1 = () => {
               required
               value={state.name}
             />
-            {errors.name && <span>This field is required</span>}
+            {errors.name && <span>{errors.name.message}</span>}
 
             <Input
               label="Birth Date:"
@@ -79,7 +94,7 @@ export const Step1 = () => {
               required
               value={state.birthDate}
             />
-            {errors.birthDate && <span>This field is required</span>}
+            {errors.birthDate && <span>{errors.birthDate.message}</span>}
           </div>
 
           <Button type="submit" label="Next →" />

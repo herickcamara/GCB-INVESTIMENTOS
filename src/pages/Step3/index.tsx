@@ -10,10 +10,24 @@ import { State } from "../../types/ReducerState";
 import { SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useFormHook } from "../../hooks/useFormHook";
+import * as yup from "yup";
 
+const schema = yup.object({
+  // name: yup.string().required(),
+  // birthDate: yup.date().required(),
+  // // city: yup.string(),
+  // CPF: yup.string().required().max(11),
+  // district: yup.string(),
+  // email: yup.string().required(),
+  houseNumber: yup.number().positive().integer().required(),
+  // password: yup.string().required(),
+  // state: yup.string(),
+  // street: yup.string(),
+  // zipCode: yup.number().positive().integer().required(),
+});
 export const Step3 = () => {
   const navigate = useNavigate();
-  const { handleSubmit, register, errors } = useFormHook();
+  const { handleSubmit, register, errors } = useFormHook(schema);
   const { state, dispatch } = useFormContext();
   useEffect(() => {
     if (state.zipCode === "") {
@@ -101,6 +115,7 @@ export const Step3 = () => {
               placeHolder="Numberº:"
               value={""}
             />
+            {errors.houseNumber && <span>{errors.houseNumber.message}</span>}
           </div>
           <C.BtmArea>
             <Button onClick={handleBackStep} bg="--color-h2" label="← Back" />

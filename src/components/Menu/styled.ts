@@ -77,7 +77,7 @@ export const Ul = styled.ul<{ active?: boolean }>`
     }
 
     .register {
-      background-color: #f5f5f5;
+      background-color: #fff;
       padding: 10px;
 
       a {

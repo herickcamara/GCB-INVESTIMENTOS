@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   background: #f5f5f5;
   box-shadow: 2px 5px 10px #888;
+  width: 90%;
 
   .areaHeader {
     padding: 10px 20px;

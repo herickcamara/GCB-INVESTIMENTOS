@@ -12,7 +12,21 @@ import { useFormHook } from "../../hooks/useFormHook";
 import { useState } from "react";
 import { ErroArea } from "../../components/Error";
 import { useFormContext } from "../../hooks/ContextHook";
+import * as yup from "yup";
 
+const schema = yup.object({
+  // name: yup.string().required(),
+  // birthDate: yup.date().required(),
+  // // city: yup.string(),
+  // CPF: yup.string().required().max(11),
+  // district: yup.string(),
+  email: yup.string().required(),
+  // houseNumber: yup.number().positive().integer().required(),
+  password: yup.string().required(),
+  // state: yup.string(),
+  // street: yup.string(),
+  // zipCode: yup.string().min(8).max(8).required(),
+});
 type ErrorMessage = {
   error: boolean;
   message: string | undefined;
@@ -24,7 +38,7 @@ export const SignIn = () => {
   });
   const { state } = useFormContext();
   const closeWindowError = () => setMessageErr({ error: false, message: "" });
-  const { errors, handleSubmit, register } = useFormHook();
+  const { errors, handleSubmit, register } = useFormHook(schema);
   const signin = async ({ email, password }: State) => {
     const DB = await DbFake.getDBFake(email, password);
     if (DB.status >= 500) {
@@ -34,8 +48,9 @@ export const SignIn = () => {
         setMessageErr({ error: true, message: DB.message });
       }
       const user = [...DB.user];
-
-      return (window.location.href = `/home/${user[0].name}`);
+      if (user[0].name) {
+        return (window.location.href = `/home/${user[0].name}`);
+      }
     }
   };
 
