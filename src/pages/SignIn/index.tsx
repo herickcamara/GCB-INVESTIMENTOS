@@ -35,7 +35,7 @@ export const SignIn = () => {
       }
       const user = [...DB.user];
 
-      return (window.location.href = `/home/${state.name}`);
+      return (window.location.href = `/home/${user[0].name}`);
     }
   };
 
