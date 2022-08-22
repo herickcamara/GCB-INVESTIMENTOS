@@ -6,21 +6,18 @@ import { Button } from "../../components/Button";
 import { useNavigate } from "react-router-dom";
 import { FormAction } from "../../Reducer/useReduce";
 import { State } from "../../types/ReducerState";
-import { useFormContex } from "../../hooks/ContextHook";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useFormContext } from "../../hooks/ContextHook";
+import { SubmitHandler } from "react-hook-form";
+import { useFormHook } from "../../hooks/useFormHook";
 
 export const Step2 = () => {
   const navigate = useNavigate();
-  const { state, dispatch } = useFormContex();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<State>();
+  const { state, dispatch } = useFormContext();
+  const { errors, handleSubmit, register } = useFormHook();
   const onSubmit: SubmitHandler<State> = (data) => setState(data);
   const handleBackStep = () => navigate(-1);
   const setcurrent = () =>
-    dispatch({ type: FormAction.setCurrentStep, payload: 2 });
+    dispatch({ type: FormAction.currentStep, payload: 2 });
 
   const setState = (data: State) => {
     dispatch({ type: FormAction.zipCode, payload: data.zipCode });
@@ -28,39 +25,40 @@ export const Step2 = () => {
   };
 
   useEffect(() => {
-    if (state.cpf === "") {
+    if (state.CPF === "") {
       navigate("/step1");
     }
     setcurrent();
   }, []);
   return (
     <ThemeForm
-      title={`${state.setName} ${state.setLastName}`}
-      desc="Para acessar conclua o seu cadastro"
+      title={`${state.name}`}
+      desc="To access, complete your registration"
     >
       <C.Container>
-        <p>Passo 2/4</p>
-        <h2>Olá {state.setName}, insira o seu CEP</h2>
-        <p>Preencha o campo abaixo!</p>
+        <p>Step 2/4</p>
+        <h2>Hello {state.name}, enter your zip code</h2>
+        <p> Fill in the field below!</p>
 
         <hr />
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="gridArea">
             <Input
-              label="CEP:"
-              placeHolder="CEP"
+              label="Zip code:"
+              placeHolder="Zip code"
               register={register}
               required
               path="zipCode"
               value={state.zipCode}
             />
+            {errors.zipCode && "be field is mandatory"}
           </div>
           <C.BtmArea>
-            <Button type="submit" bg="--color-h2" label="Próximo→" />
+            <Button onClick={handleBackStep} bg="--color-h2" label="← Back" />
+            <Button type="submit" label="Next →" />
           </C.BtmArea>
         </form>
-        <Button onClick={handleBackStep} bg="--color-h2" label="←Voltar" />
       </C.Container>
     </ThemeForm>
   );

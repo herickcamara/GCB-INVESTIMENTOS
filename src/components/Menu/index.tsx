@@ -1,16 +1,16 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import * as C from "./styled";
 import close from "../../styles/assets/close-small-svgrepo-com.svg";
 import menu from "../../styles/assets/menu-svgrepo-com.svg";
 import { Auth } from "../../helpers/auth";
-import { useFormContex } from "../../hooks/ContextHook";
+import { useFormContext } from "../../hooks/ContextHook";
 import { Button } from "../Button";
 
 export const Menu = () => {
   let logged = Auth();
 
-  const { state, dispatch } = useFormContex();
+  const { state } = useFormContext();
   const [drop, setDrop] = useState<boolean>(false);
   const handleMenuDrop = () => {
     if (drop) {
@@ -48,12 +48,12 @@ export const Menu = () => {
       {logged && (
         <C.Ul active={drop}>
           <li>
-            <Link to={`/home/${state.setName}`}>Home</Link>
+            <Link to={`/home/${state.name}`}>start</Link>
           </li>
           <li>
-            <Link to={`/about/${state.setName}`}>Sobre</Link>
+            <Link to={`/about/${state.name}`}>about</Link>
           </li>
-          <Button onClick={isLogged} label="Sair" />
+          <Button onClick={isLogged} label="go out" />
         </C.Ul>
       )}
     </C.Container>

@@ -1,15 +1,14 @@
 export type State = {
-  setCurrentStep: number;
-  setName: string;
-  setLastName: string;
-  dateNacimento: string;
+  currentStep: number;
+  name: string;
+  birthDate: string;
   city: string;
-  cpf: string;
+  CPF: string;
   district: string;
   email: string;
-  numberHouse: number;
+  houseNumber: number;
   password: string;
-  uf: string;
+  state: string;
   street: string;
   zipCode: string;
 };

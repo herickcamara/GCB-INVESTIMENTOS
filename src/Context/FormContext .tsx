@@ -10,7 +10,6 @@ type ContextType = {
 
 export const FormContext = createContext<ContextType | undefined>(undefined);
 
-//provider
 type ChildreType = {
   children: ReactNode;
 };

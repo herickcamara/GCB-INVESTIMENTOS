@@ -2,39 +2,39 @@ import { State } from "../types/ReducerState";
 
 export const DbFake = {
   postDBFake: async (user: State) => {
+    console.log(user);
     try {
       const userDb = await localStorage.getItem("@user_db");
       if (userDb) {
         const data = JSON.parse(userDb);
-        const UserExite = await data.filter(
-          (users: State) => users.email === user.email || users.cpf === user.cpf
+        const userExists = await data.filter(
+          (users: State) => users.email === user.email || users.CPF === user.CPF
         );
-        if (UserExite.length === 0) {
+        if (userExists.length === 0) {
           const newData = [...data, user];
           localStorage.setItem("@user_db", JSON.stringify(newData));
-          alert("Dados salvo con susseso");
-          return { status: 200 };
+          alert("Data saved successfully");
+          return { status: 200, message: "Data saved successfully" };
         }
-        return alert(`Usuario ja exite `);
+
+        return { status: 400, message: "User already exists" };
       } else {
         const data: State[] = [];
         data.push(user);
         localStorage.setItem("@user_db", JSON.stringify(data));
-        alert("Dados salvo con susseso");
-        return { status: 200 };
+        alert("Data saved successfully");
+        return { status: 200, message: "Data saved successfully" };
       }
     } catch (error) {
-      console.log(error);
       return { status: 501, error, message: "Erro no Banco de Dados" };
     }
   },
   getDBFake: async (email: string, pass: string) => {
     try {
       const userDb = await localStorage.getItem("@user_db");
-      console.log(userDb);
+
       if (userDb) {
         const db = await JSON.parse(userDb);
-        console.log(db);
         const user = db.filter((user: State) => user.email === email);
 
         if (user.length) {
@@ -44,11 +44,11 @@ export const DbFake = {
             return { status: 200, user };
           }
 
-          return { status: 200, message: "email ou senha invalida" };
+          return { status: 400, message: "Invalid email or password" };
         }
       }
 
-      return { status: 200, message: "Nao a registro con state email" };
+      return { status: 400, message: "No registration with state email" };
     } catch (error) {
       return { status: 501, error, message: "Erro no Banco de Dados" };
     }

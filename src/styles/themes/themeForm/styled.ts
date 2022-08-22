@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Containe = styled.div<{ img?: string }>`
   color: #fff;
   min-height: 100vh;
-  padding: 0px 10px;
+  padding: 30px 10px;
   background: ${(props) => `url(${props.img})` ?? ""} no-repeat;
   background-size: 25%;
   background-position: left bottom;

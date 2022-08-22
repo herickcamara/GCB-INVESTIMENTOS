@@ -9,10 +9,5 @@ export const useFormHook = () => {
     formState: { errors },
   } = useForm<State>();
 
-  return {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  };
+  return { register, handleSubmit, watch, errors };
 };

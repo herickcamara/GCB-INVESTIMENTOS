@@ -8,18 +8,15 @@ import { useNavigate } from "react-router-dom";
 
 import { FormAction } from "../../Reducer/useReduce";
 import { filterData } from "../../helpers/filterDate";
-import { useFormContex } from "../../hooks/ContextHook";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useFormContext } from "../../hooks/ContextHook";
+import { SubmitHandler } from "react-hook-form";
 import { State } from "../../types/ReducerState";
+import { useFormHook } from "../../hooks/useFormHook";
 
 export const Step1 = () => {
   const navigate = useNavigate();
-  const { state, dispatch } = useFormContex();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<State>();
+  const { state, dispatch } = useFormContext();
+  const { register, handleSubmit, errors } = useFormHook();
 
   useEffect(() => {
     setcurrent();
@@ -27,32 +24,28 @@ export const Step1 = () => {
 
   const setcurrent = () => {
     dispatch({
-      type: FormAction.setCurrentStep,
+      type: FormAction.currentStep,
       payload: 1,
     });
   };
 
   const setState = (data: State) => {
-    const { dateNacimento, setName, setLastName, cpf } = data;
-    dispatch({ type: FormAction.setName, payload: setName });
-    dispatch({ type: FormAction.setLastName, payload: setLastName });
-    dispatch({ type: FormAction.cpf, payload: cpf });
-    dispatch({ type: FormAction.dateNacimento, payload: dateNacimento });
+    console.log(data);
+    const { birthDate, name, CPF } = data;
+    dispatch({ type: FormAction.name, payload: name });
+    dispatch({ type: FormAction.CPF, payload: CPF });
+    dispatch({ type: FormAction.birthDate, payload: birthDate });
     navigate("/step2");
   };
 
   const onSubmit: SubmitHandler<State> = (data) => setState(data);
 
   return (
-    <ThemeForm
-      title="Cadastre-se"
-      desc="Inscreva-se para entrar e começar sua dieta"
-    >
+    <ThemeForm title="Register" desc="Sign up to log in and start your diet">
       <C.Container>
-        <p>{state.setName}</p>
-        <p>Passo 1/4</p>
-        <h2>Vamos começar com o seu nome e sobrenome</h2>
-        <p>Preencha os campos abaixo! </p>
+        <p>1/4 step</p>
+        <h2>Let's start with your first and last name</h2>
+        <p>Fill in the fields below! </p>
 
         <hr />
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -61,45 +54,35 @@ export const Step1 = () => {
               label="CPF:"
               placeHolder="CPF"
               register={register}
-              path="cpf"
+              path="CPF"
               required
-              value={state.cpf}
+              value={state.CPF}
             />
-            {errors.cpf && <span>Este Campo é Obrigatório</span>}
+            {errors.CPF && <span>This field is required</span>}
 
             <Input
-              label="Nome:"
-              placeHolder="Nome"
+              label="Name:"
+              placeHolder="Name"
               register={register}
-              path="setName"
+              path="name"
               required
-              value={state.setName}
+              value={state.name}
             />
-            {errors.setName && <span>Este Campo é Obrigatório</span>}
+            {errors.name && <span>This field is required</span>}
 
             <Input
-              label="Sobrenome:"
-              placeHolder="Sobrenome"
+              label="Birth Date:"
+              placeHolder="Birth Date"
               register={register}
-              path="setLastName"
-              required
-              value={state.setLastName}
-            />
-            {errors.setLastName && <span>Este Campo é Obrigatório</span>}
-
-            <Input
-              label="Data de Nascimento:"
-              placeHolder="Data de Nascimento"
-              register={register}
-              path="dateNacimento"
+              path="birthDate"
               type="date"
               required
-              value={state.dateNacimento}
+              value={state.birthDate}
             />
-            {errors.dateNacimento && <span>Este Campo é Obrigatório</span>}
+            {errors.birthDate && <span>This field is required</span>}
           </div>
 
-          <Button type="submit" label="Próximo →" />
+          <Button type="submit" label="Next →" />
         </form>
       </C.Container>
     </ThemeForm>

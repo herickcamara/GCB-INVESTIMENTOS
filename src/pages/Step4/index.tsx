@@ -5,23 +5,20 @@ import { Input } from "../../components/input";
 import { ThemeForm } from "../../styles/themes/themeForm";
 import { Button } from "../../components/Button";
 import { useNavigate } from "react-router-dom";
-import { useFormContex } from "../../hooks/ContextHook";
+import { useFormContext } from "../../hooks/ContextHook";
 import { FormAction } from "../../Reducer/useReduce";
-import { DbFake } from "../../helpers/useSetData";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { DbFake } from "../../services/dataBase";
+import { SubmitHandler } from "react-hook-form";
 import { State } from "../../types/ReducerState";
+import { useFormHook } from "../../hooks/useFormHook";
 
 export const Step4 = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<State>();
+  const { register, handleSubmit, errors } = useFormHook();
   const navigate = useNavigate();
-  const { state, dispatch } = useFormContex();
+  const { state, dispatch } = useFormContext();
 
   useEffect(() => {
-    if (state.numberHouse === 0) {
+    if (state.houseNumber === 0) {
       navigate("/step3");
     }
     setcurrent();
@@ -29,7 +26,7 @@ export const Step4 = () => {
 
   const setcurrent = () => {
     dispatch({
-      type: FormAction.setCurrentStep,
+      type: FormAction.currentStep,
       payload: 4,
     });
   };
@@ -37,6 +34,7 @@ export const Step4 = () => {
   const setState = async ({ email, password }: State) => {
     dispatch({ type: FormAction.email, payload: email });
     dispatch({ type: FormAction.password, payload: password });
+    console.log(state);
     const user = { ...state, email, password };
     await DbFake.postDBFake(user);
     navigate("/signin");
@@ -48,14 +46,14 @@ export const Step4 = () => {
   };
   return (
     <ThemeForm
-      title={`${state.setName} ${state.setLastName}`}
-      desc="Para acessar conclua o seu cadastro"
+      title={`${state.name}`}
+      desc="To access, complete your registration"
     >
       <C.Container>
         {state.email}
-        <p>Passo 4/4</p>
-        <h2>Para continuar insira o seu e-mail e senha</h2>
-        <p>Preencha os campos abaixo! </p>
+        <p>Step 4/4</p>
+        <h2>To continue enter your email and password</h2>
+        <p>Fill in the fields below! </p>
         <hr />
 
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -69,17 +67,17 @@ export const Step4 = () => {
             />
 
             <Input
-              label="Senha:"
+              label="password:"
               register={register}
               path="password"
-              placeHolder="Senha"
+              placeHolder="password"
               required
               type="password"
             />
           </div>
           <C.BtmArea>
-            <Button onClick={handleBackStep} bg="--color-h2" label="←Voltar" />
-            <Button type="submit" bg="--color-h2" label="Próximo→" />
+            <Button onClick={handleBackStep} bg="--color-h2" label="← Back" />
+            <Button type="submit" label="Next →" />
           </C.BtmArea>
         </form>
       </C.Container>

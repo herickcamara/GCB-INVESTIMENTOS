@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import { FormContext } from "../Context/FormContext ";
 
-export const useFormContex = () => {
+export const useFormContext = () => {
   const context = useContext(FormContext);
   if (context === undefined) {
-    throw new Error("useForm precisa ser usado dentro do FormProvider");
+    throw new Error("useForm needs to be used inside the FormProvider");
   }
   return context;
 };

@@ -6,7 +6,6 @@ export const Container = styled.div`
   padding: 20px;
   flex-direction: column;
   justify-content: center;
-  min-height: 100vh;
   h2 {
     font-size: 28px;
     color: var(--color-h2);

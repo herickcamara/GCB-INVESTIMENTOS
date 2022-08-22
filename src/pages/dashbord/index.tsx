@@ -1,17 +1,16 @@
-import { useParams } from "react-router-dom";
-import { useFormContex } from "../../hooks/ContextHook";
+import { useFormContext } from "../../hooks/ContextHook";
 import { DashBord } from "../../styles/themes/DashbordTheme";
 
 import * as C from "./styled";
 
 export const DashBordHome = () => {
-  const { state } = useFormContex();
-  const params = useParams();
+  const { state } = useFormContext();
+
   return (
     <DashBord>
       <C.Container>
         <C.SubContainer>
-          <h1>Seja Bem-Vindo, {params.slug}</h1>
+          <h2>Seja Bem-Vindo, {state.name}</h2>
         </C.SubContainer>
       </C.Container>
     </DashBord>

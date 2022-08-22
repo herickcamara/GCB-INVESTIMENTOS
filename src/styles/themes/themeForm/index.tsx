@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import * as C from "./styled";
 import bgImg from "../../assets/newservices.svg";
 import { SiderbarItem } from "../../../components/SidebarItem";
-import { useFormContex } from "../../../hooks/ContextHook";
+import { useFormContext } from "../../../hooks/ContextHook";
 import { Header } from "../../../components/Header";
 import { Button } from "../../../components/Button";
 import { Link } from "react-router-dom";
@@ -12,7 +12,7 @@ type Props = {
   desc?: string;
 };
 export const ThemeForm = ({ title, desc, children }: Props) => {
-  const { state } = useFormContex();
+  const { state } = useFormContext();
 
   return (
     <C.Containe img={bgImg}>
@@ -29,32 +29,32 @@ export const ThemeForm = ({ title, desc, children }: Props) => {
         <C.Steps>
           <C.Sidebar>
             <SiderbarItem
-              active={state.setCurrentStep >= 1}
-              title="Passo"
-              description="Dados Pessoais"
+              active={state.currentStep >= 1}
+              title="Step"
+              description="Personal data"
               path="/step1"
               icon="1"
             />
             <SiderbarItem
-              title="Passo"
-              description="Endereço"
+              title="Step"
+              description="Address"
               path="/step2"
               icon="2"
-              active={state.setCurrentStep >= 2}
+              active={state.currentStep >= 2}
             />
             <SiderbarItem
-              title="Passo"
-              description="confima endereço"
+              title="Step"
+              description="confirm address"
               path="/step3"
               icon="3"
-              active={state.setCurrentStep >= 3}
+              active={state.currentStep >= 3}
             />
             <SiderbarItem
-              title="Passo"
-              description="Finaliza cadastro"
+              title="Step"
+              description="Finalize registration"
               path="/step4"
               icon="4"
-              active={state.setCurrentStep >= 4}
+              active={state.currentStep >= 4}
             />
           </C.Sidebar>
           <C.Page>{children}</C.Page>

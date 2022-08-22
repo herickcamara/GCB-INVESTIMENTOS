@@ -1,24 +1,20 @@
 import * as C from "./styled";
 import { useEffect } from "react";
-
 import { Input } from "../../components/input";
 import { ThemeForm } from "../../styles/themes/themeForm";
 import { Button } from "../../components/Button";
-import { useFormContex } from "../../hooks/ContextHook";
+import { useFormContext } from "../../hooks/ContextHook";
 import { FormAction } from "../../Reducer/useReduce";
 import { API } from "../../services/api";
 import { State } from "../../types/ReducerState";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { useFormHook } from "../../hooks/useFormHook";
 
 export const Step3 = () => {
   const navigate = useNavigate();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<State>();
-  const { state, dispatch } = useFormContex();
+  const { handleSubmit, register, errors } = useFormHook();
+  const { state, dispatch } = useFormContext();
   useEffect(() => {
     if (state.zipCode === "") {
       navigate("/step2");
@@ -29,7 +25,7 @@ export const Step3 = () => {
     useSetData();
   }, []);
   const setcurrent = () =>
-    dispatch({ type: FormAction.setCurrentStep, payload: 3 });
+    dispatch({ type: FormAction.currentStep, payload: 3 });
 
   const useSetData = async () => {
     if (state.zipCode) {
@@ -38,12 +34,12 @@ export const Step3 = () => {
       dispatch({ type: FormAction.city, payload: localidade });
       dispatch({ type: FormAction.district, payload: bairro });
       dispatch({ type: FormAction.street, payload: logradouro });
-      dispatch({ type: FormAction.uf, payload: uf });
+      dispatch({ type: FormAction.state, payload: uf });
     }
   };
 
-  const setState = ({ numberHouse }: State) => {
-    dispatch({ type: FormAction.numberHouse, payload: numberHouse });
+  const setState = ({ houseNumber }: State) => {
+    dispatch({ type: FormAction.houseNumber, payload: houseNumber });
     navigate("/step4");
   };
   const handleBackStep = () => navigate(-1);
@@ -52,14 +48,14 @@ export const Step3 = () => {
   };
   return (
     <ThemeForm
-      title={`${state.setName} ${state.setLastName}`}
-      desc="Para acessar conclua o seu cadastro"
+      title={`${state.name}`}
+      desc="To access, complete your registration"
     >
       <C.Container>
-        <p>Passo 3/4</p>
-        <h2>{state.setName} Confirme os dados abaixo</h2>
+        <p>Step 3/4</p>
+        <h2>{state.name} Confirm the data below</h2>
         <p>
-          Atenção se houver alguma divergência nos dados verifique o seu CEP:
+          Attention if there is any discrepancy in the data check your zip code:
           {state.zipCode}
         </p>
         <hr />
@@ -68,22 +64,22 @@ export const Step3 = () => {
           <div className="gridArea">
             <Input
               register={register}
-              label="UF:"
-              path="uf"
+              label="State:"
+              path="state"
               disabled
-              value={state.uf}
+              value={state.state}
             />
 
             <Input
               register={register}
-              label="CIDADE:"
+              label="City:"
               path="city"
               disabled
               value={state.city}
             />
             <Input
               register={register}
-              label="BAIRRO:"
+              label="District:"
               path="district"
               disabled
               value={state.district}
@@ -91,7 +87,7 @@ export const Step3 = () => {
 
             <Input
               register={register}
-              label="RUA:"
+              label="Road:"
               path="street"
               disabled
               value={state.street}
@@ -101,15 +97,15 @@ export const Step3 = () => {
               register={register}
               required
               label="Nº:"
-              path="numberHouse"
-              placeHolder="Numeroº:"
+              path="houseNumber"
+              placeHolder="Numberº:"
               value={""}
             />
           </div>
           <C.BtmArea>
-            <Button type="submit" bg="--color-h2" label="Próximo→" />
+            <Button onClick={handleBackStep} bg="--color-h2" label="← Back" />
+            <Button type="submit" label="Next →" />
           </C.BtmArea>
-          <Button onClick={handleBackStep} bg="--color-h2" label="←Voltar" />
         </form>
       </C.Container>
     </ThemeForm>

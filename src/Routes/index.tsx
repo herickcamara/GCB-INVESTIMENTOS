@@ -8,14 +8,29 @@ import { Step2 } from "../pages/Step2";
 import { Step3 } from "../pages/Step3";
 import { Step4 } from "../pages/Step4";
 import { About } from "../pages/About";
+import { Privete } from "../pages/privete";
 
 export const ListRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/home/:slug" element={<DashBordHome />} />
-        <Route path="/about/:slug" element={<About />} />
+        <Route
+          path="/home/:slug"
+          element={
+            <Privete>
+              <DashBordHome />
+            </Privete>
+          }
+        />
+        <Route
+          path="/about/:slug"
+          element={
+            <Privete>
+              <About />
+            </Privete>
+          }
+        />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/step1" element={<Step1 />} />
         <Route path="/step2" element={<Step2 />} />

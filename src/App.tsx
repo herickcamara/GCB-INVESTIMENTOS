@@ -3,9 +3,9 @@ import { useEffect } from "react";
 import { Auth } from "./helpers/auth";
 import { State } from "./types/ReducerState";
 import { FormAction } from "./Reducer/useReduce";
-import { useFormContex } from "./hooks/ContextHook";
+import { useFormContext } from "./hooks/ContextHook";
 export const App = () => {
-  const { dispatch } = useFormContex();
+  const { dispatch } = useFormContext();
   let logged = Auth();
   useEffect(() => {
     if (logged) {
@@ -14,20 +14,17 @@ export const App = () => {
   }, []);
   const setState = (user: State) => {
     dispatch({
-      type: FormAction.setName,
-      payload: user.setName,
+      type: FormAction.name,
+      payload: user.name,
+    });
+
+    dispatch({
+      type: FormAction.CPF,
+      payload: user.CPF,
     });
     dispatch({
-      type: FormAction.setLastName,
-      payload: user.setLastName,
-    });
-    dispatch({
-      type: FormAction.cpf,
-      payload: user.cpf,
-    });
-    dispatch({
-      type: FormAction.dateNacimento,
-      payload: user.dateNacimento,
+      type: FormAction.birthDate,
+      payload: user.birthDate,
     });
     dispatch({
       type: FormAction.zipCode,
@@ -42,8 +39,8 @@ export const App = () => {
       payload: user.district,
     });
     dispatch({
-      type: FormAction.numberHouse,
-      payload: user.numberHouse,
+      type: FormAction.houseNumber,
+      payload: user.houseNumber,
     });
     dispatch({
       type: FormAction.street,
@@ -58,8 +55,8 @@ export const App = () => {
       payload: user.password,
     });
     dispatch({
-      type: FormAction.uf,
-      payload: user.uf,
+      type: FormAction.state,
+      payload: user.state,
     });
   };
 
